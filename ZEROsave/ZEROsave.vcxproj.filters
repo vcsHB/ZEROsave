@@ -16,6 +16,12 @@
     <Filter Include="소스 파일\Player">
       <UniqueIdentifier>{6222920f-f52d-496d-b0c7-e7e47f00d753}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Main">
+      <UniqueIdentifier>{282584be-2743-4feb-b31d-d971adc5d605}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Scene">
+      <UniqueIdentifier>{23c250ed-b491-47fb-ab89-196fa65db436}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -28,6 +34,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Define.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogic.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -45,7 +54,10 @@
       <Filter>소스 파일\Player</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLogic.cpp">
+      <Filter>소스 파일\Main</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
