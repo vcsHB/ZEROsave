@@ -4,9 +4,7 @@
 class TitleScene : public GameLogic
 {
 public:
-	virtual bool Init() override {
-
-	}
+	
 
 	virtual void Update() override {
 
