@@ -6,7 +6,7 @@ private :
 
 
 	TitleScene titleScene;
-	GameScene gameScene;
+	
 
 
 };
