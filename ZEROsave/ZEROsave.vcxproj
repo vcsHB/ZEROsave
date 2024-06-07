@@ -129,11 +129,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Objects\Agent.h" />
     <ClInclude Include="Define.h" />
+    <ClInclude Include="Objects\Object.h" />
+    <ClInclude Include="Objects\Player.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Objects\Agent.cpp" />
     <ClCompile Include="Define.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Objects\Object.cpp" />
+    <ClCompile Include="Objects\Player.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -7,5 +7,8 @@ using std::endl;
 //#define GET_SINGLE(c) c::GetInstance();
 #define SAFE_DELETE(p) if (p != nullptr){ delete p;  p = nullptr; }
 
-#include "GameLogic.h"
+#include "Core/Scene/GameLogic.h"
+#include "Core/Scene/SceneManager.h"
+#include "Core/Scene/TitleScene.h"
+#include "Core/Scene/GameScene.h"
 

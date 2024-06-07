@@ -2,6 +2,9 @@
 
 int main()
 {
-	GameLogic gameLogic;
+	SceneManager sceneManager = SceneManager();
+	sceneManager.Initialize();
+	sceneManager.Start();
 
+	delete &sceneManager;
 }
