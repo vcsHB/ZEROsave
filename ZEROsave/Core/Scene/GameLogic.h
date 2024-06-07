@@ -1,8 +1,16 @@
 #pragma once
+#include <iostream>
 
 enum class SceneTypeEnum {
 	Title,
-	InGame
+	InGame,
+	Exit
+};
+
+struct SceneState {
+	bool IsProblem;
+	bool IsExit;
+	SceneTypeEnum NextScene;
 };
 
 
@@ -15,17 +23,18 @@ public:
 	/**
 	 씬이 시작될때 실행되는 함수
 	*/
-	virtual bool Init();
+	virtual bool Init() = 0;
 
 	/**
 	씬이 동작하며 매 프레임마다 실행되는 함수
+	반환이 false가 되면 씬을 나가는 것으로 간주
 	*/
-	virtual void Update();
+	virtual SceneState Update() = 0;
 	
 	/**
 	Update함수가 실행되고 나서 콘솔창에 매 프레임마다 그려주는 함수
 	*/
-	virtual void Render();
+	virtual void Render() = 0;
 
 private:
 
