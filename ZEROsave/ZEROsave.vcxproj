@@ -129,19 +129,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="console.h" />
     <ClInclude Include="Define.h" />
-    <ClInclude Include="GameLogic.h" />
-    <ClInclude Include="mci.h" />
-    <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="console.cpp" />
     <ClCompile Include="Define.cpp" />
-    <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="mci.cpp" />
-    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
