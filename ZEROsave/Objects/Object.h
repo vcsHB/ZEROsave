@@ -31,11 +31,13 @@ public:
 class Movement 
 {
 private:
-	Agent _owner;
+	//Agent _owner;
+
 public:
-	Movement(Agent agent) {
+	
+	/*Movement(Agent agent) {
 		_owner = agent;
-	}
+	}*/
 
 	void MoveTo(Position targetPos) {
 
@@ -52,23 +54,12 @@ public :
 
 };
 
-
-
 class DamageableObject : public Object {
 
-public :
+public:
 	Health HealthCompo;
 
 
 };
 
-class Agent : public DamageableObject {
-
-public :
-	Movement MovementCompo;
-
-
-
-
-};
 
