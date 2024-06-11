@@ -13,32 +13,59 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="소스 파일\Player">
-      <UniqueIdentifier>{6222920f-f52d-496d-b0c7-e7e47f00d753}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Main">
       <UniqueIdentifier>{282584be-2743-4feb-b31d-d971adc5d605}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Scene">
       <UniqueIdentifier>{23c250ed-b491-47fb-ab89-196fa65db436}</UniqueIdentifier>
     </Filter>
+<<<<<<< Updated upstream
+=======
     <Filter Include="test">
       <UniqueIdentifier>{73047b91-7aa2-4e11-9718-fd460d6e3800}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Scene\Object">
+      <UniqueIdentifier>{fbf63608-a667-4c41-b441-b9a4bebde070}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Scene\Object\Agent">
+      <UniqueIdentifier>{6222920f-f52d-496d-b0c7-e7e47f00d753}</UniqueIdentifier>
+    </Filter>
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Agent.h">
+<<<<<<< Updated upstream
+=======
+    <ClInclude Include="Agent.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Object.h">
+    <ClInclude Include="Object.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Player.h">
+    <ClInclude Include="Player.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="console.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogic.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="mci.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Define.cpp">
@@ -47,14 +74,29 @@
     <ClCompile Include="Main.cpp">
       <Filter>소스 파일\Main</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Agent.cpp">
-      <Filter>소스 파일</Filter>
+<<<<<<< Updated upstream
+=======
+    <ClCompile Include="GameLogic.cpp">
+      <Filter>소스 파일\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Object.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>소스 파일\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Player.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>소스 파일\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일\Scene\Object\Agent</Filter>
+    </ClCompile>
+    <ClCompile Include="Agent.cpp">
+      <Filter>소스 파일\Scene\Object\Agent</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>소스 파일\Scene\Object</Filter>
+    </ClCompile>
+>>>>>>> Stashed changes
   </ItemGroup>
 </Project>
