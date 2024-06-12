@@ -1,4 +1,5 @@
 #pragma once
+#include "Define.h"
 #include "GameLogic.h" 
 
 class TitleScene : public GameLogic
