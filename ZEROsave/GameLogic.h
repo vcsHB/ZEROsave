@@ -1,17 +1,6 @@
 #pragma once
-#include <iostream>
+#include "SceneDefine.h"
 
-enum class SceneTypeEnum {
-	Title,
-	InGame,
-	Exit
-};
-
-struct SceneState {
-	bool IsProblem;
-	bool IsExit;
-	SceneTypeEnum NextScene;
-};
 
 
 class GameLogic {
