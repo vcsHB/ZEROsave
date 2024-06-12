@@ -1,25 +1,22 @@
 #pragma once
 #include "Define.h"
 #include "GameLogic.h" 
+#include <iostream>
+
+using namespace std;
 
 class TitleScene : public GameLogic
 {
+private:
+    bool isRendered = false; // 플래그 변수 추가
+
 public:
-	virtual bool Init() override {
-		cout << "TitleScene Init";
-		return true;
-	}
+     bool Init() override ;
 
-	virtual SceneState Update() override {
+    virtual SceneState Update() override {
+        cout << "Title Scene Updated" << endl;
+        return { false, true, SceneTypeEnum::InGame };
+    }
 
-		cout << "Title Scene Updated" << endl;
-		return { false, true, SceneTypeEnum::InGame };
-	}
-
-	virtual void Render() override {
-
-	}
-
-
+    virtual void Render() override;
 };
-
