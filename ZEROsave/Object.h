@@ -31,17 +31,15 @@ public:
 class Movement 
 {
 private:
-	//Agent _owner;
+	class Agent* _owner;
 
 public:
 	
-	/*Movement(Agent agent) {
+	Movement(Agent* agent) {
 		_owner = agent;
-	}*/
-
-	void MoveTo(Position targetPos) {
-
 	}
+
+	virtual void MoveTo(Position targetPos);
 
 };
 
@@ -57,9 +55,13 @@ public :
 class DamageableObject : public Object {
 
 public:
-	Health HealthCompo;
+	Health* HealthCompo;
 
+	DamageableObject() {
+		HealthCompo = new Health();
+	}
 
+	virtual void TakeDamage() = 0;
 };
 
 

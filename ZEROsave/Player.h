@@ -1,8 +1,10 @@
 #pragma once
-class Player
+#include "Agent.h"
+
+class Player : Agent
 {
 
 public :
-
+	void TakeDamage() override;
 };
 

@@ -4,10 +4,10 @@
 class Agent : public DamageableObject {
 
 public:
-	Movement MovementCompo;
+	class Movement* MovementCompo;
 
 	Agent() {
-		//MovementCompo = new Movement(this);
+		MovementCompo = new Movement(this);
 	}
 
 

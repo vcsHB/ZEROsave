@@ -31,6 +31,9 @@
     <Filter Include="소스 파일\Core\CoreLogic">
       <UniqueIdentifier>{77ba5754-f763-4337-9e4f-4d0b2f9472f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Scene\Map">
+      <UniqueIdentifier>{6eaa9bfc-966f-476f-85ac-d65c250e7506}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define.h">
@@ -64,6 +67,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="SceneDefine.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -102,6 +108,9 @@
       <Filter>소스 파일\Core\CoreLogic</Filter>
     </ClCompile>
     <ClCompile Include="SceneDefine.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

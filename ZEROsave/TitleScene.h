@@ -11,7 +11,7 @@ private:
     bool isRendered = false; // 플래그 변수 추가
 
 public:
-     bool Init() override ;
+    bool Init() override ;
 
     virtual SceneState Update() override {
         cout << "Title Scene Updated" << endl;

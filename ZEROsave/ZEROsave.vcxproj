@@ -134,6 +134,7 @@
     <ClInclude Include="Define.h" />
     <ClInclude Include="GameLogic.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="mci.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
@@ -148,6 +149,7 @@
     <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="mci.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />

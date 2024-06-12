@@ -21,8 +21,6 @@ public :
 	void Start();
 
 
-
-
 	~SceneManager() {
 		delete titleScene;
 		delete gameScene;

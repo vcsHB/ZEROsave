@@ -2,7 +2,7 @@
 
 bool TitleScene::Init() 
 {
-
+    return true;
 }
 
 void TitleScene::Render()
