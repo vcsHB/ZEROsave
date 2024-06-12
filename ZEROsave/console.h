@@ -1,9 +1,9 @@
 #pragma once
-#include <iostream>
-#include <Windows.h>
-using std::cout;
-using std::wcout;
-using std::endl;
+//#include <iostream>
+//#include <Windows.h>
+//using std::cout;R
+//using std::wcout;
+//using std::endl;
 
 void FullScreen();
 BOOL GotoPos(int _x, int _y);

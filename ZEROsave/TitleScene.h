@@ -1,8 +1,7 @@
 #pragma once
 #include "GameLogic.h" 
-#include <iostream>
-
-using namespace std;
+//#include <iostream>
+//using namespace std;
 
 class TitleScene : public GameLogic
 {
@@ -12,10 +11,7 @@ private:
 public:
      bool Init() override ;
 
-    virtual SceneState Update() override {
-        cout << "Title Scene Updated" << endl;
-        return { false, true, SceneTypeEnum::InGame };
-    }
+    virtual SceneState Update() override;
 
     virtual void Render() override;
 };
