@@ -63,6 +63,9 @@
     <ClInclude Include="TitleScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="SceneDefine.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameLogic.cpp">
@@ -97,6 +100,9 @@
     </ClCompile>
     <ClCompile Include="mci.cpp">
       <Filter>소스 파일\Core\CoreLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneDefine.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

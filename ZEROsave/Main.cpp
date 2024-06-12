@@ -1,10 +1,20 @@
 #include "Define.h"
 
+class a
+{
+
+};
+class test
+{
+	a m_a;
+};
 int main()
 {
-	SceneManager sceneManager = SceneManager();
-	sceneManager.Initialize();
-	sceneManager.Start();
+	test t;
+
+	SceneManager *sceneManager = new SceneManager();
+	sceneManager->Initialize();
+	sceneManager->Start();
 
 	delete &sceneManager;
 }
