@@ -1,9 +1,11 @@
 #pragma once
+#include <iostream>
+#include <string>
 #include "Object.h"
-const char TILE_SET[] = { ' ', '□', '■', '▦', 'ㅁ'};
+const std::string TILE_SET[] = { " ", "□", "■", "▦", "ㅁ"};
 
 enum class TileTypeEnum {
-	None,
+	None = 0,
 	Road,
 	Wall,
 
@@ -36,11 +38,11 @@ public:
 	// 맵 타일들을 관리함
 	MapTile** maptiles;
 
-	void Initialize(int size, char** mapText);
+	void Initialize(int size, std::string* mapText);
 
 	MapTile GetTile(int XPos, int YPos);
 	
-	char GetTileVisual(Position position);
+	std::string GetTileVisual(Position position);
 
 	void Destory();
 };

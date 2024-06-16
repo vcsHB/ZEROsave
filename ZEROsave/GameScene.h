@@ -1,11 +1,13 @@
 #pragma once
 #include "Define.h"
+#include <string>
 #include <vector>
 #include "GameLogic.h"
 #include "Object.h"
 #include "Player.h"
 #include "Map.h"
 
+#include "console.h"
 
 class GameScene : public GameLogic
 {
