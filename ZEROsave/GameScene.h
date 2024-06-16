@@ -4,13 +4,15 @@
 #include "GameLogic.h"
 #include "Object.h"
 #include "Player.h"
-
+#include "Map.h"
 
 
 class GameScene : public GameLogic
 {
 private :
+	Map* _map;
 	std::vector<Object> _objectList;
+	Player* _player;
 
 public:
 

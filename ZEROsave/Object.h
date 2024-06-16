@@ -1,11 +1,11 @@
 #pragma once
 
-struct Position
+typedef struct Position
 {
-public :
 	int x;
 	int y;
 
+	//Position(int _x, int _y) { x = _x, y = _y; }
 };
 
 class Health {

@@ -111,7 +111,7 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Scene\Map</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

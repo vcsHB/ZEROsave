@@ -20,3 +20,13 @@ void GameScene::Render() {
 	cout << "ming";
 
 }
+
+void GameScene::RenderMap() {
+	for (int i = 0; i < _map->MapHeight; i++)
+	{
+		for (int j = 0; j < _map->MapWidth; j++)
+		{
+
+		}
+	}
+}
