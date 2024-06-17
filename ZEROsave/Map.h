@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include "Object.h"
-const std::string TILE_SET[] = { " ", "бр", "бс", "в╦", "д▒"};
+const std::string TILE_SET[] = { "бр", "в╠", "бс", "в╦", "д▒"};
 
 enum class TileTypeEnum {
 	None = 0,
