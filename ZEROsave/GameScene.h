@@ -15,7 +15,7 @@ private :
 	Map* _map;
 	std::vector<Object> _objectList;
 	Player* _player;
-
+	int a = 0;
 public:
 
 	virtual bool Init() override;

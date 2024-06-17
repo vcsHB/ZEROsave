@@ -50,20 +50,21 @@ void GameScene::MovePlayer()
 {
 	// 인풋 받아와서 이동코드 작성
 	if (GetAsyncKeyState(VK_UP) & 0x8000) {
-		--_player->newPosition.y;
+		
+		--_player->position.y;
 	}
 	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-		++_player->newPosition.y;
+		++_player->position.y;
 	}
 	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-		--_player->newPosition.x;
+		_player->position.x -= 2;
 	}
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-		++_player->newPosition.x;
+		_player->position.x += 2;
 	}
 
-
-
+	GotoPos(5, 13);
+	cout << a++;
 }
 
 void GameScene::Render() {
@@ -81,7 +82,7 @@ void GameScene::RenderMap() {
 	{
 		for (int j = 0; j < _map->MapWidth; j++)
 		{
-			SetColor((int)_map->GetTile(i, j).tileColor);
+			SetColor((int)_map->GetTile(i, j).tileColor, (int)_map->GetTile(i, j).backgroundColor);
 			cout << _map->GetTileVisual({i, j});
 		}
 		
@@ -98,5 +99,6 @@ void GameScene::RenderPlayer() {
 	GotoPos(playerPos.x+3, playerPos.y);
 	SetColor((int)_player->objectColor);
 	cout << _player->objectIcon;
-
+	GotoPos(5, 13);
+	cout << _player->position.x << ", " << _player->position.y;
 }

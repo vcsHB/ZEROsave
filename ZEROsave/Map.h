@@ -2,8 +2,9 @@
 #include "console.h"
 #include <string>
 #include "Object.h"
-const std::string TILE_SET[] = { "¢Ì", "¡à", "¡á", "¢Ë", "¤±"};
-const COLOR TILE_COLORSET[] = { COLOR::GRAY, COLOR::LIGHT_GREEN, COLOR::GREEN, COLOR::LIGHT_RED };
+const std::string TILE_SET[] = { "¢Ì", "  ", "¡á", "¢Ë", "¤±"};
+const COLOR TILE_COLORSET[] = { COLOR::GRAY, COLOR::LIGHT_GREEN, COLOR::BLACK, COLOR::LIGHT_RED };
+const COLOR TILE_BGCOLORSET[] = { COLOR::GRAY, COLOR::BLACK, COLOR::GREEN, COLOR::RED };
 
 enum class TileTypeEnum {
 	None = 0,
@@ -18,23 +19,28 @@ typedef struct MapTile {
 	TileTypeEnum tileType;
 	Position position;
 	COLOR tileColor;
+	COLOR backgroundColor;
+	bool isColorSet = false;
 
 	MapTile() {
 		tileType = TileTypeEnum::None;
 		position = { 0,0 };
 		tileColor = COLOR::LIGHT_GREEN;
+		backgroundColor = COLOR::BLACK;
 	}
 
 	MapTile(TileTypeEnum type, Position pos) {
 		tileType = type;
 		position = pos;
 		tileColor = COLOR::LIGHT_GREEN;
+		backgroundColor = COLOR::BLACK;
 	}
 
-	MapTile(TileTypeEnum type, Position pos, COLOR color) {
+	MapTile(TileTypeEnum type, Position pos, COLOR color, COLOR bgColor) {
 		tileType = type;
 		position = pos;
 		tileColor = color;
+		backgroundColor = bgColor;
 	}
 
 };

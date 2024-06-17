@@ -33,6 +33,7 @@ class Object
 public :
 	std::string objectIcon;
 	COLOR objectColor;
+	COLOR objectBackgroundColor;
 
 	Position position;
 	// 이동에 따른 위치 보정을 위한 변수

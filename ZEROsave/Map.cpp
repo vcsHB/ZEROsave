@@ -31,7 +31,12 @@ void Map::Initialize(int size, std::string* mapText)
 MapTile Map::GetTile(int XPos, int YPos)
 {
 	MapTile tile = maptiles[XPos][YPos];
-	tile.tileColor = TILE_COLORSET[(int)tile.tileType];
+	if (!tile.isColorSet) {
+
+		tile.isColorSet = true;
+		tile.tileColor = TILE_COLORSET[(int)tile.tileType];
+		tile.backgroundColor = TILE_BGCOLORSET[(int)tile.tileType];
+	}
 	return tile;
 }
 
