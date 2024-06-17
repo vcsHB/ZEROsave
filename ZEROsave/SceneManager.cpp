@@ -7,6 +7,7 @@ void SceneManager::Initialize()
 	if (gameScene == nullptr)
 		gameScene = new GameScene();
 
+
 }
 
 void SceneManager::Start() {
