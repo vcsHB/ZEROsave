@@ -140,6 +140,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="SceneDefine.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Stat.h" />
     <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +156,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneDefine.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Stat.cpp" />
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

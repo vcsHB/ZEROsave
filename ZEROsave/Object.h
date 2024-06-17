@@ -15,13 +15,9 @@ public:
 	
 	int maxHP;
 
-	void TakeDamage(int amount) {
-		_currentHP -= amount;
-	}
+	void TakeDamage(int amount);
 
-	void RestoreHealth(int amount) {
-		_currentHP += amount;
-	}
+	void RestoreHealth(int amount);
 
 	int GetCurrentHP() { return _currentHP; }
 
@@ -61,7 +57,7 @@ public:
 		HealthCompo = new Health();
 	}
 
-	virtual void TakeDamage() = 0;
+	virtual void TakeDamage(int amount) = 0;
 };
 
 

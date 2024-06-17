@@ -22,10 +22,14 @@ public:
 
 	virtual SceneState Update() override;
 
+	void MovePlayer();
+
+
 	virtual void Render() override;
 
 
 	void RenderMap();
+	void RenderPlayer();
 
 
 };

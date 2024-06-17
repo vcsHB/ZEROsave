@@ -72,6 +72,9 @@
     <ClInclude Include="Map.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Stat.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameLogic.cpp">
@@ -107,11 +110,14 @@
     <ClCompile Include="mci.cpp">
       <Filter>소스 파일\Core\CoreLogic</Filter>
     </ClCompile>
-    <ClCompile Include="SceneDefine.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>소스 파일\Scene\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneDefine.cpp">
+      <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Stat.cpp">
+      <Filter>소스 파일\Scene\Agent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

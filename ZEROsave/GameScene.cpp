@@ -27,8 +27,15 @@ bool GameScene::Init()
 
 SceneState GameScene::Update() 
 {
+	MovePlayer();
 	return { false, false, SceneTypeEnum::Title };
-};
+}
+void GameScene::MovePlayer()
+{
+	// 인풋 받아와서 이동코드 작성
+
+
+}
 
 void GameScene::Render() {
 

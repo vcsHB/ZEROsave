@@ -3,8 +3,9 @@
 
 class Player : Agent
 {
-
+	
 public :
-	void TakeDamage() override;
+
+	void TakeDamage(int amount) override;
 };
 
