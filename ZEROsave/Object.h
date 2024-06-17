@@ -1,4 +1,6 @@
 #pragma once
+#include "console.h"
+#include <string>
 
 typedef struct Position
 {
@@ -24,40 +26,21 @@ public:
 
 };
 
-class Movement 
-{
-private:
-	class Agent* _owner;
 
-public:
-	
-	Movement(Agent* agent) {
-		_owner = agent;
-	}
-
-	virtual void MoveTo(Position targetPos);
-
-};
 
 class Object
 {
 public :
+	std::string objectIcon;
+	COLOR objectColor;
 
 	Position position;
-	
+	// 이동에 따른 위치 보정을 위한 변수
+	Position newPosition;
+
+	virtual void Initialize() = 0;
 
 };
 
-class DamageableObject : public Object {
-
-public:
-	Health* HealthCompo;
-
-	DamageableObject() {
-		HealthCompo = new Health();
-	}
-
-	virtual void TakeDamage(int amount) = 0;
-};
 
 

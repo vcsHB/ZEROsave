@@ -30,7 +30,9 @@ void Map::Initialize(int size, std::string* mapText)
 
 MapTile Map::GetTile(int XPos, int YPos)
 {
-	return maptiles[XPos][YPos];
+	MapTile tile = maptiles[XPos][YPos];
+	tile.tileColor = TILE_COLORSET[(int)tile.tileType];
+	return tile;
 }
 
 std::string Map::GetTileVisual(Position position)

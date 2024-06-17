@@ -20,6 +20,8 @@ public:
 
 	virtual bool Init() override;
 
+	void InitObjects();
+
 	virtual SceneState Update() override;
 
 	void MovePlayer();
@@ -30,6 +32,8 @@ public:
 
 	void RenderMap();
 	void RenderPlayer();
+	void RenderObjects();
+	void RenderUI();
 
 
 };
