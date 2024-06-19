@@ -12,4 +12,5 @@ void Player::Initialize()
 	Status = new Stat();
 	objectIcon = "¢Ã";
 	objectColor = COLOR::SKYBLUE;
+	objectBackgroundColor = COLOR::BLACK;
 }

@@ -2,9 +2,9 @@
 #include "console.h"
 #include <string>
 #include "Object.h"
-const std::string TILE_SET[] = { "¢Ì", "  ", "¡á", "¢Ë", "¤±"};
-const COLOR TILE_COLORSET[] = { COLOR::GRAY, COLOR::LIGHT_GREEN, COLOR::BLACK, COLOR::LIGHT_RED };
-const COLOR TILE_BGCOLORSET[] = { COLOR::GRAY, COLOR::BLACK, COLOR::GREEN, COLOR::RED };
+const std::string TILE_SET[] = { "  ", "  ", "¡á", "¢Ë", "¢Ë"};
+const COLOR TILE_COLORSET[] =	{ COLOR::GRAY, COLOR::LIGHT_GREEN, COLOR::BLACK, COLOR::LIGHT_RED,COLOR::LIGHT_GREEN };
+const COLOR TILE_BGCOLORSET[] = { COLOR::GRAY, COLOR::BLACK, COLOR::GREEN, COLOR::RED, COLOR::BLACK };
 
 enum class TileTypeEnum {
 	None = 0,

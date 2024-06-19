@@ -15,11 +15,16 @@ private :
 	Map* _map;
 	std::vector<Object> _objectList;
 	Player* _player;
-	int a = 0;
+	
+	int xOrigin = 0;
+	int yOrigin = 0;
+
 public:
+
 
 	virtual bool Init() override;
 
+	void InitMapData();
 	void InitObjects();
 
 	virtual SceneState Update() override;

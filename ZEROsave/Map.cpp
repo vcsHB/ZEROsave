@@ -18,7 +18,7 @@ void Map::Initialize(int size, std::string* mapText)
 	for (int i = 0; i < MapHeight; i++)
 	{
 		maptiles[i] = new MapTile[size];
-		for (int j = 0; j < MapWidth; j++)
+		for (int j = 0; j < mapText[i].length(); j++)
 		{
 			maptiles[i][j] = MapTile(
 				(TileTypeEnum)(mapText[i][j]-48),
