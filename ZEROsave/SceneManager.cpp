@@ -17,6 +17,7 @@ void SceneManager::Start() {
 		SceneState state;
 
 		state = _currentScene->Update();
+		Sleep(100);
 		_currentScene->Render();
 
 		// 씬 변경여부가 체크되었을때

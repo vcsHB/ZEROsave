@@ -95,4 +95,13 @@ void SetFontsize(UINT _weight, UINT _sizeX, UINT _sizeY) {
 	SetCurrentConsoleFontEx(hOut, false, &font);
 }
 
+void SetConsolePos(COORD pos)
+{
+	HWND consoleWindow = GetConsoleWindow();
+	SetWindowPos(consoleWindow, 0, pos.X, pos.Y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+
+}
+
+
+
 

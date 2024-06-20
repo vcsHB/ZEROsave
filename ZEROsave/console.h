@@ -14,6 +14,7 @@ int GetColor();
 void LockResize();
 COORD GetConsoleResolution();
 void SetFontsize(UINT _weight, UINT _sizeX, UINT _sizeY);
+void SetConsolePos(COORD pos);
 
 enum class COLOR
 {

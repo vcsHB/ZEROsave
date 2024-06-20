@@ -1,47 +1,20 @@
 #include "GameScene.h"
-#include <fstream>
 
 
 bool GameScene::Init()
 {
-	system("title ZERO Save | mode con cols=80 lines=40");
+	system("title ZERO Save | mode con cols=60 lines=30");
 	system("cls");	
-
+	//
 	SetCursorVisual(false, 1);
-	LockResize();
+	LockResize();  
 	SetFontsize(FW_BOLD, 20, 20);
 
 	
-	// 테스트 영역
-	/*_map = new Map();
-	std::string mapTest[15] = {
-	"333333333333311",
-	"311111211333311",
-	"3222211113",
-	"3224414223",
-	"3244414223",
-	"3211111113",
-	"3212222213",
-	"3212222213",
-	"3111111113",
-	"3333333333",
-	"3333333333",
-	"3333333333",
-	"3333333333",
-	"3333333333",
-	"3333333333"
-	};
-	_map->startPosition = { 2,2 };
-	_map->Initialize(15, mapTest);*/
-
-	// 테스트 영역
 
 	// 맵 로드
 	InitMapData();
-	cout << "맵 로드";
-	//InitMapData();
 	
-
 	_player = new Player();
 	_player->Initialize();
 	_player->position = _map->startPosition;
@@ -107,7 +80,7 @@ void GameScene::InitMapData()
 SceneState GameScene::Update() 
 {
 	MovePlayer();
-	Sleep(100);
+	
 	return { false, false, SceneTypeEnum::Title };
 }
 
@@ -131,11 +104,18 @@ void GameScene::MovePlayer()
 	GotoPos(5, 13);
 }
 
+void GameScene::UpdateWindow()
+{
+	_windowManager->UpdateWindow();
+	
+}
+
+
 void GameScene::Render() {
 
 	COORD coord = GetConsoleResolution();
 	xOrigin = coord.X / 2 - _map->MapWidth;
-	yOrigin = coord.Y / 2 - _map->MapHeight;
+	yOrigin = coord.Y / 2 - _map->MapHeight/2;
 	cout << xOrigin << ", " << yOrigin;
 	RenderMap();
 	RenderPlayer();
@@ -145,7 +125,7 @@ void GameScene::Render() {
 void GameScene::RenderMap() {
 	
 	
-	GotoPos(xOrigin, yOrigin);
+	GotoPos(xOrigin, yOrigin-1);
 	for (int i = 0; i < _map->MapHeight; i++)
 	{
 		for (int j = 0; j < _map->MapWidth; j++)
@@ -154,7 +134,7 @@ void GameScene::RenderMap() {
 			cout << _map->GetTileVisual({i, j});
 		}
 		
-		GotoPos(xOrigin, yOrigin + i + 1);
+		GotoPos(xOrigin, yOrigin + i);
 	}
 }
 
@@ -172,10 +152,20 @@ void GameScene::RenderObjects()
 {
 }
 
+
 void GameScene::RenderUI() {
 	int hp = _player->HealthCompo->GetCurrentHP();
 	int maxHp = _player->HealthCompo->maxHP;
 
 	
 }
+
+
+
+void GameScene::Exit()
+{
+	
+	delete[] _map;
+}
+
 

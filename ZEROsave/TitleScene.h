@@ -19,4 +19,6 @@ public:
     }
 
     virtual void Render() override;
+
+    virtual void Exit() override;
 };
