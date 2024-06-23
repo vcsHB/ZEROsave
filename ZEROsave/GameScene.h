@@ -11,6 +11,8 @@
 
 #include "console.h"
 
+const std::string GAUGE_TILESET = { "¢Æ¢Æ" };
+
 class GameScene : public GameLogic
 {
 private :
@@ -21,6 +23,8 @@ private :
 	
 	int xOrigin = 0;
 	int yOrigin = 0;
+
+	COORD _windowSize;
 
 public:
 

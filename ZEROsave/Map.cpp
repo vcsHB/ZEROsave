@@ -18,10 +18,11 @@ void Map::Initialize(int size, std::string* mapText)
 	for (int i = 0; i < MapHeight; i++)
 	{
 		maptiles[i] = new MapTile[size];
-		for (int j = 0; j < mapText[i].length(); j++)
+		 //널문자 반영 해야되나?
+		for (int j = 0; j < MapWidth; j++)
 		{
 			maptiles[i][j] = MapTile(
-				(TileTypeEnum)(mapText[i][j]-48),
+				(TileTypeEnum)(mapText[i][j] - '0'),
 				{ i, j }
 			);
 		}
@@ -30,7 +31,7 @@ void Map::Initialize(int size, std::string* mapText)
 
 MapTile Map::GetTile(int XPos, int YPos)
 {
-	MapTile tile = maptiles[XPos][YPos];
+	MapTile tile = maptiles[YPos][XPos];
 	if (!tile.isColorSet) {
 
 		tile.isColorSet = true;
@@ -38,6 +39,11 @@ MapTile Map::GetTile(int XPos, int YPos)
 		tile.backgroundColor = TILE_BGCOLORSET[(int)tile.tileType];
 	}
 	return tile;
+}
+
+MapTile Map::GetTile(Position position)
+{	
+	return GetTile(position.x, position.y);
 }
 
 std::string Map::GetTileVisual(Position position)

@@ -1,3 +1,4 @@
+#pragma comment(lib, "winmm.lib")
 #include "SceneManager.h"
 
 void SceneManager::Initialize()
@@ -17,7 +18,7 @@ void SceneManager::Start() {
 		SceneState state;
 
 		state = _currentScene->Update();
-		Sleep(100);
+		
 		_currentScene->Render();
 
 		// 씬 변경여부가 체크되었을때
@@ -41,7 +42,22 @@ void SceneManager::Start() {
 				cout << "Init Error";
 			}
 		}
+		FrameSync(60);
 
+	}
+}
 
+void SceneManager::FrameSync(unsigned int _Framerate)
+{
+	clock_t oldtime, curtime;
+	oldtime = clock();
+	while (true)
+	{
+		curtime = clock();
+		if (curtime - oldtime > 1000 / _Framerate)
+		{
+			oldtime = curtime;
+			break;
+		}
 	}
 }

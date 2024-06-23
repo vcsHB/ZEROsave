@@ -11,13 +11,16 @@ bool GameScene::Init()
 	SetFontsize(FW_BOLD, 20, 20);
 
 	
-
+	_windowManager = new WindowManager();
 	// 맵 로드
 	InitMapData();
-	
+
 	_player = new Player();
+	_player->HealthCompo->Initialize(10);
+
 	_player->Initialize();
 	_player->position = _map->startPosition;
+	_player->newPosition = _map->startPosition;
 	return true;
 
 }
@@ -48,12 +51,12 @@ void GameScene::InitMapData()
 	//cout << "size : " << size << endl;
 	// 시작 위치 =======
 
-	std::getline(readMap, bufferStr);
 	int positionBufferX;
+	std::getline(readMap, bufferStr);
 	positionBufferX = stoi(bufferStr);
+
 	int positionBufferY;
 	std::getline(readMap, bufferStr);
-	
 	positionBufferY = stoi(bufferStr);
 	_map->startPosition = { positionBufferX, positionBufferY };
 	//cout << positionBufferX << ", " << positionBufferY << endl;
@@ -80,28 +83,38 @@ void GameScene::InitMapData()
 SceneState GameScene::Update() 
 {
 	MovePlayer();
-	
+	UpdateWindow();
 	return { false, false, SceneTypeEnum::Title };
 }
 
 void GameScene::MovePlayer()
 {
+	_player->newPosition = _player->position;
 	// 인풋 받아와서 이동코드 작성
 	if (GetAsyncKeyState(VK_UP) & 0x8000) {
 		
-		--_player->position.y;
+		--_player->newPosition.y;
 	}
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-		++_player->position.y;
+	else if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+		++_player->newPosition.y;
 	}
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-		_player->position.x -= 2;
+	else if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+		_player->newPosition.x--;
+		//_player->newPosition.x -= 2;
 	}
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-		_player->position.x += 2;
+	else if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+		//_player->newPosition.x += 2;
+		_player->newPosition.x++;
+	}
+	_player->newPosition.ClampX(0, _map->MapWidth-1);
+	_player->newPosition.ClampY(0, _map->MapHeight-1);
+	MapTile tile = _map->GetTile(_player->newPosition);
+	if ((int)tile.tileType != 1) {
+		return;
 	}
 
-	GotoPos(5, 13);
+	_player->MovementCompo->MoveTo(_player->newPosition);
+	Sleep(100);
 }
 
 void GameScene::UpdateWindow()
@@ -113,38 +126,42 @@ void GameScene::UpdateWindow()
 
 void GameScene::Render() {
 
-	COORD coord = GetConsoleResolution();
-	xOrigin = coord.X / 2 - _map->MapWidth;
-	yOrigin = coord.Y / 2 - _map->MapHeight/2;
+	_windowSize = GetConsoleResolution();
+	xOrigin = _windowSize.X / 2 - _map->MapWidth;
+	yOrigin = _windowSize.Y / 2 - _map->MapHeight/2;
 	cout << xOrigin << ", " << yOrigin;
 	RenderMap();
 	RenderPlayer();
+	RenderUI();
 
 }
 
-void GameScene::RenderMap() {
-	
-	
-	GotoPos(xOrigin, yOrigin-1);
+void GameScene::RenderMap() 
+{
+	GotoPos(xOrigin, yOrigin);
 	for (int i = 0; i < _map->MapHeight; i++)
 	{
 		for (int j = 0; j < _map->MapWidth; j++)
 		{
-			SetColor((int)_map->GetTile(i, j).tileColor, (int)_map->GetTile(i, j).backgroundColor);
-			cout << _map->GetTileVisual({i, j});
+			MapTile tile = _map->GetTile(j, i);
+			SetColor((int)tile.tileColor, (int)tile.backgroundColor);
+			cout << _map->GetTileVisual({j, i});
+			//cout << (int)tile.tileType << " ";
 		}
 		
-		GotoPos(xOrigin, yOrigin + i);
+		GotoPos(xOrigin, yOrigin + i + 1);
 	}
 }
 
 void GameScene::RenderPlayer() {
 	Position playerPos = _player->position;
-	GotoPos(xOrigin + playerPos.x + 2, yOrigin + playerPos.y);
+	GotoPos(xOrigin + playerPos.x * 2, yOrigin + playerPos.y);
 	SetColor((int)_player->objectColor, (int)_player->objectBackgroundColor);
 	cout << _player->objectIcon;
-	//GotoPos(5, 13);
-	//cout << _player->position.x << ", " << _player->position.y;
+	GotoPos(0, 1);
+	cout << "위치: " << _player->position.x << ", " << _player->position.y;
+	GotoPos(0, 2);
+	cout << "새 위치: " << _player->newPosition.x << ", " << _player->newPosition.y;
 }
 
 
@@ -154,10 +171,21 @@ void GameScene::RenderObjects()
 
 
 void GameScene::RenderUI() {
+	GotoPos(_windowSize.X / 2, _windowSize.Y - 1);
 	int hp = _player->HealthCompo->GetCurrentHP();
 	int maxHp = _player->HealthCompo->maxHP;
-
-	
+	int fillAmount = (int)(((float)hp / maxHp) * 10);
+	SetColor((int)COLOR::LIGHT_BLUE, (int)COLOR::BLUE);
+	for (int i = 0; i < fillAmount; i++)
+	{
+		wcout << GAUGE_TILESET[0];
+	}
+	SetColor((int)COLOR::LIGHT_BLUE, (int)COLOR::BLACK);
+	for (int i = 0; i < 10- fillAmount; i++)
+	{
+		wcout << GAUGE_TILESET[0];
+	}
+	SetColor();
 }
 
 

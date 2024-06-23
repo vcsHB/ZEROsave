@@ -8,6 +8,14 @@ typedef struct Position
 	int y;
 
 	//Position(int _x, int _y) { x = _x, y = _y; }
+	void ClampX(int min, int max) {
+		if (x > max) x = max;
+		if (x < min) x = min;
+	}
+	void ClampY(int min, int max) {
+		if (y > max) y = max;
+		if (y < min) y = min;
+	}
 };
 
 class Health {
@@ -16,6 +24,8 @@ private :
 public:
 	
 	int maxHP;
+
+	void Initialize(int amount);
 
 	void TakeDamage(int amount);
 

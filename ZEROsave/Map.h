@@ -58,6 +58,8 @@ public:
 	void Initialize(int size, std::string* mapText);
 
 	MapTile GetTile(int XPos, int YPos);
+
+	MapTile GetTile(Position position);
 	
 	std::string GetTileVisual(Position position);
 
