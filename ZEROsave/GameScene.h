@@ -8,15 +8,15 @@
 #include "Player.h"
 #include "Map.h"
 #include "WindowManager.h"
-
+#include "UIRenderer.h"
 #include "console.h"
 
-const std::string GAUGE_TILESET = { "¢Æ¢Æ" };
 
 class GameScene : public GameLogic
 {
 private :
 	WindowManager* _windowManager;
+	UIRenderer* _uiRenderer;
 	Map* _map;
 	std::vector<Object> _objectList;
 	Player* _player;

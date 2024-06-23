@@ -145,6 +145,7 @@
     <ClInclude Include="Stat.h" />
     <ClInclude Include="TargetObject.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="UIRenderer.h" />
     <ClInclude Include="WindowManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +166,7 @@
     <ClCompile Include="Stat.cpp" />
     <ClCompile Include="TargetObject.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="UIRenderer.cpp" />
     <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

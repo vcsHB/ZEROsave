@@ -13,6 +13,7 @@ struct Sequence {
 class WindowManager
 {
 private :
+
 	std::queue<Sequence> _sequenceQueue;
 	Sequence _currentSequence;
 
@@ -20,6 +21,9 @@ private :
 	float _currentTime;
 
 public :
+	int windowSizeX;
+	int windowSizeY;
+
 	// 시퀀싱을 멈춘다
 	void Stop();
 	// 시퀀스 큐를 초기화한다, 현재 진행중인것은 지우지 않는다

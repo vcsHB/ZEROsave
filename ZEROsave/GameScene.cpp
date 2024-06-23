@@ -12,6 +12,7 @@ bool GameScene::Init()
 
 	
 	_windowManager = new WindowManager();
+	_uiRenderer = new UIRenderer();
 	// 맵 로드
 	InitMapData();
 
@@ -21,6 +22,8 @@ bool GameScene::Init()
 	_player->Initialize();
 	_player->position = _map->startPosition;
 	_player->newPosition = _map->startPosition;
+
+	_uiRenderer->Initialize(_player, _map, _windowManager);
 	return true;
 
 }
@@ -77,6 +80,8 @@ void GameScene::InitMapData()
 	readMap.close();
 	_map->Initialize(size, mapString);
 
+	SetColor((int)COLOR::LIGHT_RED);
+	cout << "▶ MAP SIZE    <" << _map->MapWidth << " * " << _map->MapHeight << ">";
 
 }
 
@@ -127,9 +132,11 @@ void GameScene::UpdateWindow()
 void GameScene::Render() {
 
 	_windowSize = GetConsoleResolution();
+	_windowManager->windowSizeX = _windowSize.X;
+	_windowManager->windowSizeY = _windowSize.Y;
 	xOrigin = _windowSize.X / 2 - _map->MapWidth;
 	yOrigin = _windowSize.Y / 2 - _map->MapHeight/2;
-	cout << xOrigin << ", " << yOrigin;
+	//cout << xOrigin << ", " << yOrigin;
 	RenderMap();
 	RenderPlayer();
 	RenderUI();
@@ -158,10 +165,7 @@ void GameScene::RenderPlayer() {
 	GotoPos(xOrigin + playerPos.x * 2, yOrigin + playerPos.y);
 	SetColor((int)_player->objectColor, (int)_player->objectBackgroundColor);
 	cout << _player->objectIcon;
-	GotoPos(0, 1);
-	cout << "위치: " << _player->position.x << ", " << _player->position.y;
-	GotoPos(0, 2);
-	cout << "새 위치: " << _player->newPosition.x << ", " << _player->newPosition.y;
+	
 }
 
 
@@ -170,22 +174,41 @@ void GameScene::RenderObjects()
 }
 
 
-void GameScene::RenderUI() {
-	GotoPos(_windowSize.X / 2, _windowSize.Y - 1);
+void GameScene::RenderUI() 
+{
+	_uiRenderer->Render();
+	/*
+	GotoPos(0, 0);
+	SetColor((int)COLOR::LIGHT_BLUE);
+	GotoPos(0, 1);
+	cout << "                                        ";
+	cout << "\r▶ NOW ADDRESS  \t|\t" << _player->position.x << ", " << _player->position.y;
+	GotoPos(0, 2);
+	cout << "                                        ";
+	cout << "\r▶ TARGET ADDRESS\t|\t" << _player->newPosition.x << ", " << _player->newPosition.y;
+
+	GotoPos(_windowSize.X / 2 - 10, _windowSize.Y - 3);
 	int hp = _player->HealthCompo->GetCurrentHP();
 	int maxHp = _player->HealthCompo->maxHP;
-	int fillAmount = (int)(((float)hp / maxHp) * 10);
-	SetColor((int)COLOR::LIGHT_BLUE, (int)COLOR::BLUE);
+	_player->HealthCompo->TakeDamage(1);
+
+	int fillAmount = (int)(((float)hp / maxHp) * 20);
+	SetColor((int)COLOR::LIGHT_BLUE, (int)COLOR::LIGHT_BLUE);
 	for (int i = 0; i < fillAmount; i++)
 	{
 		wcout << GAUGE_TILESET[0];
 	}
-	SetColor((int)COLOR::LIGHT_BLUE, (int)COLOR::BLACK);
-	for (int i = 0; i < 10- fillAmount; i++)
-	{
-		wcout << GAUGE_TILESET[0];
+	SetColor((int)COLOR::LIGHT_BLUE, (int)COLOR::BLUE);
+	if (fillAmount > 0) {
+
+		for (int i = 0; i < 20 - fillAmount; i++)
+		{
+			wcout << GAUGE_TILESET[0];
+		}
 	}
-	SetColor();
+
+	SetColor();*/
+
 }
 
 
