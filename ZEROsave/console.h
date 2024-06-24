@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <Windows.h>
+
 using std::cout;
 using std::wcout;
 using std::endl;

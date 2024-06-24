@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
 #include "Define.h"
-#include "console.h"
 #include "Object.h"
+#include "console.h"
 
 const std::string TILE_SET[] = { "  ", "  ", "¡á", "¢Ë", "¢Ë"};
 const COLOR TILE_COLORSET[] =	{ COLOR::GRAY, COLOR::LIGHT_GREEN, COLOR::BLACK, COLOR::LIGHT_RED,COLOR::LIGHT_GREEN };
@@ -51,7 +51,7 @@ class Map
 {
 private :
 	static Map* _instance;
-
+private :
 	Map() {
 
 	}
@@ -62,17 +62,19 @@ public:
 			_instance = new Map();
 		return _instance;
 	}
+
 	static void DestroyInstance()
 	{
 		if (_instance != nullptr) {
 			delete _instance;
-		_instance = nullptr;
-		//SAFE_DELETE();
-		/*if (instance != nullptr)
-		{
-			delete instance;
-			instance = nullptr;
-		}*/
+			_instance = nullptr;
+			//SAFE_DELETE();
+			/*if (instance != nullptr)
+			{
+				delete instance;
+				instance = nullptr;
+			}*/
+		}
 	}
 
 	int MapWidth;
@@ -91,4 +93,5 @@ public:
 	std::string GetTileVisual(Position position);
 
 	void Destory();
+
 };

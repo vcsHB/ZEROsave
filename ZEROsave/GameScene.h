@@ -11,13 +11,15 @@
 #include "UIRenderer.h"
 #include "console.h"
 
+class UIRenderer;
+class Map;
 
 class GameScene : public GameLogic
 {
 private :
 	WindowManager* _windowManager;
 	UIRenderer* _uiRenderer;
-	Map* _map = nullptr;
+	Map* _map;
 	std::vector<Object> _objectList;
 	Player* _player;
 	

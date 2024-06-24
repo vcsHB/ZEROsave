@@ -1,12 +1,16 @@
 #pragma once
-#include "Map.h"
 #include "Object.h"
+
+class Object;
+
+
 enum class ColliderType {
 	Wall,
 	Object,
 	Player,
 	Enemy
 };
+
 
 class Collider
 {

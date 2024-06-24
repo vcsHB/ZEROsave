@@ -1,5 +1,4 @@
 #include "Map.h"
-
 Map* Map::_instance = nullptr;
 
 
@@ -15,6 +14,7 @@ void Map::Initialize(int size, std::string* mapText)
 	 * i
 	 * 
 	 */
+	
 	MapWidth = size;
 	MapHeight = size;
 	maptiles = new MapTile*[size];

@@ -3,6 +3,8 @@
 #include "Object.h"
 #include "console.h"
 
+class Object;
+
 struct Sequence 
 {
 	Position newPosition;
