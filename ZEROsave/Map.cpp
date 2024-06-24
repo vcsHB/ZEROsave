@@ -1,5 +1,8 @@
 #include "Map.h"
 
+Map* Map::_instance = nullptr;
+
+
 void Map::Initialize(int size, std::string* mapText)
 {
 	/*
@@ -53,4 +56,8 @@ std::string Map::GetTileVisual(Position position)
 	
 	return result;
 
+}
+
+void Map::Destory()
+{
 }

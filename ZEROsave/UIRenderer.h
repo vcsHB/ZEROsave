@@ -1,7 +1,7 @@
 #pragma once
+#include "Map.h"
 #include "Object.h"
 #include "Player.h"
-#include "Map.h"
 #include "WindowManager.h"
 #include "console.h"
 const std::string GAUGE_TILESET = { "  " };
@@ -15,7 +15,7 @@ private :
 	WindowManager* _windowManager;
 
 public:
-	void Initialize(Player* player, Map* map, WindowManager* windowManager);
+	void Initialize(Player* player, WindowManager* windowManager);
 
 	void Render();
 

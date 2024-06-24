@@ -17,7 +17,7 @@ class GameScene : public GameLogic
 private :
 	WindowManager* _windowManager;
 	UIRenderer* _uiRenderer;
-	Map* _map;
+	Map* _map = nullptr;
 	std::vector<Object> _objectList;
 	Player* _player;
 	

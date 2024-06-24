@@ -10,10 +10,11 @@ bool GameScene::Init()
 	LockResize();  
 	SetFontsize(FW_BOLD, 20, 20);
 
-	
+	_map = Map::GetInstance();
 	_windowManager = new WindowManager();
 	_uiRenderer = new UIRenderer();
 	// 맵 로드
+	
 	InitMapData();
 
 	_player = new Player();
@@ -23,7 +24,7 @@ bool GameScene::Init()
 	_player->position = _map->startPosition;
 	_player->newPosition = _map->startPosition;
 
-	_uiRenderer->Initialize(_player, _map, _windowManager);
+	_uiRenderer->Initialize(_player, _windowManager);
 	return true;
 
 }
@@ -45,7 +46,7 @@ void GameScene::InitMapData()
 	if (!readMap.is_open())
 		return;
 	// 맵 생성 ======
-	_map = new Map();
+	_map = Map::GetInstance();
 	std::string bufferStr;
 	std::getline(readMap, bufferStr);
 	int size = stoi(bufferStr); // 사이즈 지정
@@ -177,37 +178,7 @@ void GameScene::RenderObjects()
 void GameScene::RenderUI() 
 {
 	_uiRenderer->Render();
-	/*
-	GotoPos(0, 0);
-	SetColor((int)COLOR::LIGHT_BLUE);
-	GotoPos(0, 1);
-	cout << "                                        ";
-	cout << "\r▶ NOW ADDRESS  \t|\t" << _player->position.x << ", " << _player->position.y;
-	GotoPos(0, 2);
-	cout << "                                        ";
-	cout << "\r▶ TARGET ADDRESS\t|\t" << _player->newPosition.x << ", " << _player->newPosition.y;
-
-	GotoPos(_windowSize.X / 2 - 10, _windowSize.Y - 3);
-	int hp = _player->HealthCompo->GetCurrentHP();
-	int maxHp = _player->HealthCompo->maxHP;
-	_player->HealthCompo->TakeDamage(1);
-
-	int fillAmount = (int)(((float)hp / maxHp) * 20);
-	SetColor((int)COLOR::LIGHT_BLUE, (int)COLOR::LIGHT_BLUE);
-	for (int i = 0; i < fillAmount; i++)
-	{
-		wcout << GAUGE_TILESET[0];
-	}
-	SetColor((int)COLOR::LIGHT_BLUE, (int)COLOR::BLUE);
-	if (fillAmount > 0) {
-
-		for (int i = 0; i < 20 - fillAmount; i++)
-		{
-			wcout << GAUGE_TILESET[0];
-		}
-	}
-
-	SetColor();*/
+	
 
 }
 

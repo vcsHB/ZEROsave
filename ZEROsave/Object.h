@@ -1,6 +1,6 @@
 #pragma once
-#include "console.h"
 #include <string>
+#include "console.h"
 
 typedef struct Position
 {
@@ -15,6 +15,22 @@ typedef struct Position
 	void ClampY(int min, int max) {
 		if (y > max) y = max;
 		if (y < min) y = min;
+	}
+
+
+	void VectorAdd(Position direction) {
+		x += direction.x;
+		y += direction.y;
+
+	}
+
+	void VectorNormalizedAdd(Position direction) {
+
+		direction.ClampX(-1, 1); 
+		direction.ClampY(-1, 1);
+		x += direction.x;
+		y += direction.y;
+
 	}
 };
 

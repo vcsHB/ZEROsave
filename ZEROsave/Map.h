@@ -1,7 +1,9 @@
 #pragma once
-#include "console.h"
 #include <string>
+#include "Define.h"
+#include "console.h"
 #include "Object.h"
+
 const std::string TILE_SET[] = { "  ", "  ", "¡á", "¢Ë", "¢Ë"};
 const COLOR TILE_COLORSET[] =	{ COLOR::GRAY, COLOR::LIGHT_GREEN, COLOR::BLACK, COLOR::LIGHT_RED,COLOR::LIGHT_GREEN };
 const COLOR TILE_BGCOLORSET[] = { COLOR::GRAY, COLOR::BLACK, COLOR::GREEN, COLOR::RED, COLOR::BLACK };
@@ -47,7 +49,32 @@ typedef struct MapTile {
 
 class Map
 {
+private :
+	static Map* _instance;
+
+	Map() {
+
+	}
 public:
+	static Map* GetInstance()
+	{
+		if (_instance == nullptr)
+			_instance = new Map();
+		return _instance;
+	}
+	static void DestroyInstance()
+	{
+		if (_instance != nullptr) {
+			delete _instance;
+		_instance = nullptr;
+		//SAFE_DELETE();
+		/*if (instance != nullptr)
+		{
+			delete instance;
+			instance = nullptr;
+		}*/
+	}
+
 	int MapWidth;
 	int MapHeight;
 	Position startPosition;
@@ -65,4 +92,3 @@ public:
 
 	void Destory();
 };
-

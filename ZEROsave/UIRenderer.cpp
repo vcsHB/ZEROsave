@@ -1,9 +1,9 @@
 #include "UIRenderer.h"
 
-void UIRenderer::Initialize(Player* player, Map* map, WindowManager* windowManager)
+void UIRenderer::Initialize(Player* player, WindowManager* windowManager)
 {
 	_player = player;
-	_map = map;
+	_map = Map::GetInstance();
 	_windowManager = windowManager;
 }
 
@@ -24,6 +24,7 @@ void UIRenderer::Render()
 	_player->HealthCompo->TakeDamage(1);
 
 	int fillAmount = (int)(((float)hp / maxHp) * 20);
+	wcout << "¢º";
 	SetColor((int)COLOR::LIGHT_BLUE, (int)COLOR::LIGHT_BLUE);
 	for (int i = 0; i < fillAmount; i++)
 	{
@@ -37,6 +38,12 @@ void UIRenderer::Render()
 			wcout << GAUGE_TILESET[0];
 		}
 	}
-
 	SetColor();
+	wcout << "¢¸";
+	GotoPos(_windowManager->windowSizeX / 2 - 10, _windowManager->windowSizeY - 2);
+	cout << "                                        ";
+	GotoPos(_windowManager->windowSizeX / 2 - 10, _windowManager->windowSizeY - 2);
+	cout << "SHIELD : (" << hp << " / " << maxHp << ")";
+
+
 }

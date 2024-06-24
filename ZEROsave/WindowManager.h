@@ -3,8 +3,8 @@
 #include "Object.h"
 #include "console.h"
 
-struct Sequence {
-
+struct Sequence 
+{
 	Position newPosition;
 	float duration;
 
@@ -13,7 +13,7 @@ struct Sequence {
 class WindowManager
 {
 private :
-
+	Position _currentPosition;
 	std::queue<Sequence> _sequenceQueue;
 	Sequence _currentSequence;
 
