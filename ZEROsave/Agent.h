@@ -9,7 +9,5 @@ public:
 	Agent() {
 		//MovementCompo = new Movement(this);
 	}
-
-
 };
 
