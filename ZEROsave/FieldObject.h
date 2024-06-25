@@ -4,7 +4,7 @@
 class FieldObject : public Object
 {
 private :
-	Collider* _collider;
+	class Collider* _collider;
 	
 public:
 	void Initialize();

@@ -2,27 +2,29 @@
 #include <vector>
 #include <functional>
 
-class delegate {
+
+template <typename... Args>
+class Delegate {
 public:
-    // 템플릿 메서드: 일반 함수 포인터 추가
+    // 함수 포인터 추가 템플릿 메서드 (전역 함수 또는 람다)
     template <typename Function>
     void Add(Function func) {
         invokers_.emplace_back(func);
     }
 
-    // 템플릿 메서드: 멤버 함수 포인터 추가
+    // 멤버 함수 포인터 추가 템플릿 메서드
     template <typename Object, typename Function>
     void Add(Object* obj, Function func) {
-        invokers_.emplace_back([=](int arg) { (obj->*func)(arg); });
+        invokers_.emplace_back([=](Args... args) { (obj->*func)(args...); });
     }
 
-    // 함수 호출: 등록된 모든 함수 호출
-    void operator()(int arg) const {
+    // 모든 등록된 함수 호출
+    void operator()(Args... args) const {
         for (const auto& invoker : invokers_) {
-            invoker(arg);
+            invoker(args...);
         }
     }
 
 private:
-    std::vector<std::function<void(int)>> invokers_;  // 함수 객체를 저장하는 벡터
+    std::vector<std::function<void(Args...)>> invokers_;  // 다양한 인수를 받는 함수 객체를 저장
 };

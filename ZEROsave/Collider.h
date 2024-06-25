@@ -1,8 +1,7 @@
 #pragma once
 #include "Object.h"
 #include "Map.h"
-#include "delegate.h"
-//#include "delegate.h"
+#include "delegate.h"`
 
 class Object;
 class Map;
@@ -21,20 +20,18 @@ class Collider
 private :
 	ColliderType _colliderType;
 	ColliderType _collisionTarget;
-	Object* _owner;
-	Map* _map;
+	Object* _owner = nullptr;
+	Map* _map = nullptr;
 
 
 public:
-	delegate OnCollisionEvent;
+	Delegate<Collider*> OnCollisionEvent;
 
+	Collider() {
 
-	Collider(Object* owner, ColliderType type, ColliderType target) {
-		_colliderType = type;
-		_collisionTarget = target;
-		_owner = owner;
-		_map = Map::GetInstance();
 	}
+
+	Collider(Object* owner, ColliderType type, ColliderType target);
 
 
 	bool CheckCollision();

@@ -141,6 +141,7 @@
     <ClInclude Include="GameLogic.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="HealItemObject.h" />
+    <ClInclude Include="Health.h" />
     <ClInclude Include="ItemObject.h" />
     <ClInclude Include="LifeTimeLimitedObject.h" />
     <ClInclude Include="Map.h" />
@@ -171,6 +172,7 @@
     <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="HealItemObject.cpp" />
+    <ClCompile Include="Health.cpp" />
     <ClCompile Include="ItemObject.cpp" />
     <ClCompile Include="LifeTimeLimitedObject.cpp" />
     <ClCompile Include="Main.cpp" />

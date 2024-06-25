@@ -14,6 +14,7 @@
 
 class UIRenderer;
 class Map;
+class ObjectManager;
 
 class GameScene : public GameLogic
 {

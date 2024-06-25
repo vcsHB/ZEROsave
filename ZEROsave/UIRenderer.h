@@ -7,6 +7,7 @@
 const std::string GAUGE_TILESET = { "  " };
 
 class Map;
+class Player;
 
 class UIRenderer
 {

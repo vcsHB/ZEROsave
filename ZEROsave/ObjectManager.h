@@ -4,9 +4,12 @@
 #include "Object.h"
 #include "FieldObject.h"
 
+class FieldObject;
+class Agent;
+
 enum class ObjectType{
 	Item,
-
+	Barrier
 };
 
 class ObjectManager

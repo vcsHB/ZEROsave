@@ -2,10 +2,12 @@
 #include "Object.h"
 #include "Agent.h"
 
+class Agent;
+
 class Movement
 {
 private:
-	class Agent* _owner;
+	Agent* _owner;
 
 public:
 
