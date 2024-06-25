@@ -173,9 +173,6 @@
     <ClCompile Include="TargetObject.cpp">
       <Filter>소스 파일\Scene\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Projectile.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="delegate.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -216,7 +213,10 @@
       <Filter>소스 파일\Scene\Agent</Filter>
     </ClCompile>
     <ClCompile Include="Health.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Scene\Agent</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>소스 파일\Scene\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
