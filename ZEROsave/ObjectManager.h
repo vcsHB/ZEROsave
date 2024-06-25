@@ -2,6 +2,7 @@
 #include <vector>
 #include "Agent.h"
 #include "Object.h"
+#include "FieldObject.h"
 
 enum class ObjectType{
 	Item,
@@ -11,12 +12,12 @@ enum class ObjectType{
 class ObjectManager
 {
 private:
-	std::vector<Object> _objectList;
-	std::vector<Agent> _agentList;
+	std::vector<FieldObject*> _objectList;
+	std::vector<Agent*> _agentList;
 
 public:
-	void SpawnObject();
-	void SpawnAgent(Agent agent);
+	void SpawnObject(FieldObject* object);
+	void SpawnAgent(Agent* agent);
 
 	void Update();
 

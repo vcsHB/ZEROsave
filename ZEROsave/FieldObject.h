@@ -7,9 +7,10 @@ private :
 	Collider* _collider;
 	
 public:
-	void Initialize() {
-		_collider = new Collider(this, ColliderType::Object, ColliderType::Player);
-	}
+	void Initialize();
+
+	void Destroy();
+	
 
 };
 
