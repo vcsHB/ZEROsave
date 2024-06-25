@@ -34,6 +34,7 @@ void TitleScene::Render() {
                 \$$$$$$$$ \$$$$$$$$ \$$   \$$  \$$$$$$   \$$$$$$  \$$   \$$     \$     \$$$$$$$$|
     )" << std::endl;
     _setmode(_fileno(stdout), beforemode);
+    MenuRender();
 }
 
 bool TitleScene::Title() {
@@ -58,7 +59,7 @@ bool TitleScene::Title() {
             break;
         case MENU::QUIT:
             return false;
-        //}
+        }
     }
 }
 
@@ -103,7 +104,7 @@ MENU TitleScene::MenuRender() {
 
     while (true) {
         KEY eKey = KeyController();
-        std::cout << "Key Pressed: " << static_cast<int>(eKey) << std::endl;
+        //std::cout << "Key Pressed: " << static_cast<int>(eKey) << std::endl;
         switch (eKey) {
         case KEY::UP:
             if (originy < y) {
