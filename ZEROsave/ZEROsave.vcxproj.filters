@@ -34,6 +34,9 @@
     <Filter Include="소스 파일\Scene\Map">
       <UniqueIdentifier>{6eaa9bfc-966f-476f-85ac-d65c250e7506}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Scene\Object\FieldObject">
+      <UniqueIdentifier>{c7c15b30-1b94-4d8a-aee1-cdf4c52302e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define.h">
@@ -99,6 +102,27 @@
     <ClInclude Include="Collider.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyAI.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="HealItemObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="FieldObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="delegate.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameLogic.cpp">
@@ -146,26 +170,47 @@
     <ClCompile Include="TargetObject.cpp">
       <Filter>소스 파일\Scene\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Movement.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="DamageableObject.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="UIRenderer.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Projectile.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="LifeTimeLimitedObject.cpp">
+    <ClCompile Include="delegate.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Collider.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Scene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>소스 파일\Scene\Agent</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyAI.cpp">
+      <Filter>소스 파일\Scene\Agent</Filter>
+    </ClCompile>
+    <ClCompile Include="LifeTimeLimitedObject.cpp">
+      <Filter>소스 파일\Scene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="FieldObject.cpp">
+      <Filter>소스 파일\Scene\Object\FieldObject</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemObject.cpp">
+      <Filter>소스 파일\Scene\Object\FieldObject</Filter>
+    </ClCompile>
+    <ClCompile Include="HealItemObject.cpp">
+      <Filter>소스 파일\Scene\Object\FieldObject</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>소스 파일\Scene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="UIRenderer.cpp">
+      <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageableObject.cpp">
+      <Filter>소스 파일\Scene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowManager.cpp">
+      <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Movement.cpp">
+      <Filter>소스 파일\Scene\Agent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

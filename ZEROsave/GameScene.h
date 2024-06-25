@@ -9,6 +9,7 @@
 #include "Map.h"
 #include "WindowManager.h"
 #include "UIRenderer.h"
+#include "ObjectManager.h"
 #include "console.h"
 
 class UIRenderer;
@@ -19,8 +20,9 @@ class GameScene : public GameLogic
 private :
 	WindowManager* _windowManager;
 	UIRenderer* _uiRenderer;
+	ObjectManager* _objectManager;
 	Map* _map;
-	std::vector<Object> _objectList;
+	
 	Player* _player;
 	
 	int xOrigin = 0;

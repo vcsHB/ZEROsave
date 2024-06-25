@@ -2,5 +2,7 @@
 
 bool Collider::CheckCollision()
 {
+    if(_map.)
+
     return false;
 }
