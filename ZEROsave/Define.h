@@ -7,6 +7,6 @@ using std::endl;
 #include "SceneManager.h"
 
 //#define GET_SINGLE(c) c::GetInstance();
-#define SAFE_DELETE(p) if (p != nullptr){ delete p;  p = nullptr; }
+//#define SAFE_DELETE(p) if (p != nullptr){ delete p;  p = nullptr; }
 
 

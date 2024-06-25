@@ -28,7 +28,7 @@ public:
 	/** 
 	* 씬을 빠져나갈때 실행되는 함수
 	*/
-	//virtual void Exit() = 0;
+	virtual void Exit() = 0;
 
 private:
 
