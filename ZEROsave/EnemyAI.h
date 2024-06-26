@@ -2,6 +2,9 @@
 #include "Agent.h"
 #include "Collider.h"
 
+class Agent;
+class Collider;
+
 class EnemyAI
 {
 private :

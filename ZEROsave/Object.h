@@ -32,7 +32,7 @@ typedef struct Position
 		y += direction.y;
 
 	}
-};
+}Position;
 
 
 
@@ -40,13 +40,13 @@ typedef struct Position
 class Object
 {
 public :
-	std::string objectIcon;
-	COLOR objectColor;
-	COLOR objectBackgroundColor;
+	std::string objectIcon = "  ";
+	COLOR objectColor = COLOR::WHITE;
+	COLOR objectBackgroundColor = COLOR::BLACK;
 
-	Position position;
+	Position position = {};
 	// 이동에 따른 위치 보정을 위한 변수
-	Position newPosition;
+	Position newPosition = {};
 
 	virtual void Initialize() = 0;
 

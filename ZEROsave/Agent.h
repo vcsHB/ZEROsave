@@ -1,9 +1,5 @@
 #pragma once
 #include "DamageableObject.h"
-#include "Movement.h"
-#include "Stat.h"
-#include "Collider.h"
-
 class Movement;
 class Stat;
 class Collider;
@@ -20,9 +16,10 @@ public:
 	}
 
 	~Agent() {
-		delete MovementCompo;
+		/*delete MovementCompo;
 		delete Status;
-		delete collider;
+		delete collider;*/
 
 	}
+
 };

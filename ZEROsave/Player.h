@@ -1,8 +1,6 @@
 #pragma once
 #include "Agent.h"
 
-class Agent;
-
 class Player : public Agent
 {
 public :

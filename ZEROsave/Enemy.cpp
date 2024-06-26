@@ -1,5 +1,7 @@
 #include "Enemy.h"
-
+#include "Movement.h"
+#include "Stat.h"
+#include "Collider.h"
 void Enemy::TakeDamage(int amount)
 {
 	if (Status->isResist) return;

@@ -1,5 +1,5 @@
 #include "FieldObject.h"
-
+#include "Collider.h"
 void FieldObject::Initialize() 
 {
 	_collider = new Collider(this, ColliderType::Object, ColliderType::Player);

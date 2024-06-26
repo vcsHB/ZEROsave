@@ -1,7 +1,7 @@
 #pragma once
 #include "Object.h"
 #include "Map.h"
-#include "delegate.h"`
+//#include "delegate.h"
 
 class Object;
 class Map;
@@ -18,14 +18,14 @@ enum class ColliderType {
 class Collider
 {
 private :
-	ColliderType _colliderType;
-	ColliderType _collisionTarget;
+	ColliderType _colliderType = ColliderType::Object;
+	ColliderType _collisionTarget = ColliderType::Object;
 	Object* _owner = nullptr;
 	Map* _map = nullptr;
 
 
 public:
-	Delegate<Collider*> OnCollisionEvent;
+	//Delegate<Collider*> OnCollisionEvent;
 
 	Collider() {
 

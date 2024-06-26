@@ -45,7 +45,7 @@ typedef struct MapTile {
 		backgroundColor = bgColor;
 	}
 
-};
+}MapTile;
 
 class Map
 {
@@ -77,9 +77,9 @@ public:
 		}
 	}
 
-	int MapWidth;
-	int MapHeight;
-	Position startPosition;
+	int MapWidth = 0;
+	int MapHeight = 0;
+	Position startPosition = {};
 
 	// 맵 타일들을 관리함
 	MapTile** maptiles;

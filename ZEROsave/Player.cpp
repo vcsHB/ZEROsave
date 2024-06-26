@@ -1,4 +1,7 @@
 #include "Player.h"
+#include "Movement.h"
+#include "Stat.h"
+#include "Collider.h"
 
 void Player::TakeDamage(int amount)
 {

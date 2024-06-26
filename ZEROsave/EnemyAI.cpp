@@ -10,3 +10,7 @@ void EnemyAI::CheckCollision()
 {
 	
 }
+
+void EnemyAI::Move()
+{
+}

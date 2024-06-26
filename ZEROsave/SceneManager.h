@@ -23,8 +23,8 @@ public :
 	void FrameSync(unsigned int _Framerate);
 
 	~SceneManager() {
-		delete titleScene;
-		delete gameScene;
+		/*delete titleScene;
+		delete gameScene;*/
 
 		// nullptr로 지정해야되던가
 	}

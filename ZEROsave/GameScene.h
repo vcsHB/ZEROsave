@@ -19,12 +19,12 @@ class ObjectManager;
 class GameScene : public GameLogic
 {
 private :
-	WindowManager* _windowManager;
-	UIRenderer* _uiRenderer;
-	ObjectManager* _objectManager;
-	Map* _map;
+	WindowManager* _windowManager = nullptr;
+	UIRenderer* _uiRenderer = nullptr;
+	ObjectManager* _objectManager = nullptr;
+	Map* _map = nullptr;
 	
-	Player* _player;
+	Player* _player = nullptr;
 	
 	int xOrigin = 0;
 	int yOrigin = 0;

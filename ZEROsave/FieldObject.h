@@ -1,7 +1,8 @@
 #pragma once
 #include "Object.h"
-#include "Collider.h"
-class FieldObject : public Object
+#include "DamageableObject.h"
+
+class FieldObject : public DamageableObject
 {
 private :
 	class Collider* _collider;
