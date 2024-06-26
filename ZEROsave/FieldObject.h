@@ -4,14 +4,16 @@
 
 class FieldObject : public DamageableObject
 {
-private :
+protected :
 	class Collider* _collider;
 	
 public:
-	void Initialize();
+	virtual void Initialize();
 
-	void Destroy();
+	virtual void Destroy() = 0;
 	
+	void TakeDamage(int amount) override;
+
 
 };
 

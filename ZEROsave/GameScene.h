@@ -43,7 +43,7 @@ public:
 
 	void MovePlayer();
 	void UpdateWindow();
-
+	void CheckGet1Item();
 
 	virtual void Render() override;
 

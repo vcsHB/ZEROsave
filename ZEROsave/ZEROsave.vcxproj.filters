@@ -126,6 +126,9 @@
     <ClInclude Include="Health.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="ItemManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameLogic.cpp">
@@ -217,6 +220,9 @@
     </ClCompile>
     <ClCompile Include="Projectile.cpp">
       <Filter>소스 파일\Scene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemManager.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

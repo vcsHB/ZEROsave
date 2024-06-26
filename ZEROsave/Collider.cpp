@@ -10,7 +10,7 @@ Collider::Collider(Object* owner, ColliderType type, ColliderType target)
 
 bool Collider::CheckCollision()
 {
-    //OnCollisionEvent(this);
+    OnCollisionEvent(this);
 
     return false;
 }

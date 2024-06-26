@@ -1,7 +1,7 @@
 #pragma once
 #include "Object.h"
 #include "Map.h"
-//#include "delegate.h"
+#include "delegate.h"
 
 class Object;
 class Map;
@@ -25,7 +25,7 @@ private :
 
 
 public:
-	//Delegate<Collider*> OnCollisionEvent;
+	Delegate<Collider*> OnCollisionEvent;
 
 	Collider() {
 

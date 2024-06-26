@@ -129,6 +129,10 @@ void GameScene::UpdateWindow()
 	
 }
 
+void GameScene::CheckGetItem()
+{
+}
+
 
 void GameScene::Render() {
 
