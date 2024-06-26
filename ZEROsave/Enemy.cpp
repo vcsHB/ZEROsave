@@ -10,6 +10,8 @@ void Enemy::TakeDamage(int amount)
 
 void Enemy::Initialize()
 {
+	_enemyAI = new EnemyAI();
+	_enemyAI->Initialize(this);
 	MovementCompo = new Movement(this);
 	Status = new Stat();
 	collider = new Collider(this, ColliderType::Enemy, ColliderType::Player);

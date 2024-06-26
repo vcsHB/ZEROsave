@@ -15,14 +15,17 @@ enum class ObjectType{
 class ObjectManager
 {
 private:
-	std::vector<FieldObject*> _objectList;
-	std::vector<Agent*> _agentList;
+	//std::vector<FieldObject*> _objectList;
+	std::vector<Object*> _objectList;
+	//std::vector<Agent*> _agentList;
 
 public:
-	void SpawnObject(FieldObject* object);
-	void SpawnAgent(Agent* agent);
-
+	void GenerateObject(Object* object);
+	
 	void Update();
+
+
+	std::vector<Object*> GetObjects();
 
 };
 

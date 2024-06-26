@@ -8,9 +8,9 @@ protected :
 	class Collider* _collider;
 	
 public:
-	virtual void Initialize();
+	void Initialize();
 
-	virtual void Destroy() = 0;
+	virtual void Destroy(bool value) = 0;
 	
 	void TakeDamage(int amount) override;
 

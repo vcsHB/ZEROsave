@@ -6,7 +6,8 @@ class ItemManager
 {
 
 private :
-	Map
+	Map* _map;
+	
 
 };
 

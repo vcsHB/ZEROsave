@@ -1,6 +1,8 @@
 #include "GameScene.h"
 #include "Movement.h"
 
+
+
 bool GameScene::Init()
 {
 	system("title ZERO Save | mode con cols=60 lines=30");
@@ -13,9 +15,11 @@ bool GameScene::Init()
 	_map = Map::GetInstance();
 	_windowManager = new WindowManager();
 	_uiRenderer = new UIRenderer();
+	_objectManager = new ObjectManager();
+
 	// 맵 로드
-	
-	InitMapData();
+	InitStageData();
+
 
 	_player = new Player();
 	_player->HealthCompo->Initialize(10);
@@ -26,17 +30,12 @@ bool GameScene::Init()
 
 	_uiRenderer->Initialize(_player, _windowManager);
 	return true;
-
 }
 
 
-void GameScene::InitObjects()
-{
 
 
-}
-
-void GameScene::InitMapData()
+void GameScene::InitStageData()
 {
 	if (_map != nullptr)
 		delete _map;
@@ -48,7 +47,7 @@ void GameScene::InitMapData()
 	// 맵 생성 ======
 	_map = Map::GetInstance();
 	std::string bufferStr;
-	std::getline(readMap, bufferStr);
+	getline(readMap, bufferStr);
 	int size = stoi(bufferStr); // 사이즈 지정
 	_map->MapHeight = size;
 	_map->MapWidth = size;
@@ -56,33 +55,61 @@ void GameScene::InitMapData()
 	// 시작 위치 =======
 
 	int positionBufferX;
-	std::getline(readMap, bufferStr);
-	positionBufferX = stoi(bufferStr);
-
 	int positionBufferY;
-	std::getline(readMap, bufferStr);
+	getline(readMap, bufferStr);
+	positionBufferX = stoi(bufferStr);
+	getline(readMap, bufferStr);
 	positionBufferY = stoi(bufferStr);
 	_map->startPosition = { positionBufferX, positionBufferY };
+
 	//cout << positionBufferX << ", " << positionBufferY << endl;
 
 	// 맵 정의 =========
 	std::string* mapString = new std::string[size];
 	for (int i = 0; i < size; i++)
 	{
-		
 		std::getline(readMap, bufferStr);
 		if (readMap.fail()) {
 			std::cout << "파일 에러";
 		}
 		mapString[i] = bufferStr;
-		
-
 	}
+
+	// 오브젝트 가져오기
+	Enemy* testEnemy = new Enemy();
+	testEnemy->Initialize();
+	testEnemy->position = { 8, 10 };
+	_objectManager->GenerateObject(testEnemy);
+
+	//int _objectAmount;
+	//std::getline(readMap, bufferStr);
+	//_objectAmount = stoi(bufferStr);
+	//// 
+	//for (int i = 0; i < _objectAmount; i++)
+	//{
+	//	std::getline(readMap, bufferStr);
+	//	
+	//	std::getline(readMap, bufferStr);
+	//	positionBufferX = stoi(bufferStr);
+	//	std::getline(readMap, bufferStr);
+	//	positionBufferY = stoi(bufferStr);
+	//	Position pos = { positionBufferX, positionBufferY };
+	//	
+
+	//	
+	//}
+
 	readMap.close();
 	_map->Initialize(size, mapString);
 
 	SetColor((int)COLOR::LIGHT_RED);
 	cout << "▶ MAP SIZE    <" << _map->MapWidth << " * " << _map->MapHeight << ">";
+
+}
+
+void GameScene::InitObjects()
+{
+	
 
 }
 
@@ -123,6 +150,17 @@ void GameScene::MovePlayer()
 	Sleep(100);
 }
 
+void GameScene::ControlPlayer()
+{
+	if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
+		// 공격 구현 해야디
+
+
+	}
+
+
+}
+
 void GameScene::UpdateWindow()
 {
 	_windowManager->UpdateWindow();
@@ -131,6 +169,9 @@ void GameScene::UpdateWindow()
 
 void GameScene::CheckGetItem()
 {
+	
+
+
 }
 
 
@@ -144,6 +185,7 @@ void GameScene::Render() {
 	//cout << xOrigin << ", " << yOrigin;
 	RenderMap();
 	RenderPlayer();
+	RenderObjects();
 	RenderUI();
 
 }
@@ -176,6 +218,13 @@ void GameScene::RenderPlayer() {
 
 void GameScene::RenderObjects()
 {
+	vector<Object*> _objectList = _objectManager->GetObjects();
+	for (Object* object : _objectList)
+	{
+		GotoPos(xOrigin + object->position.x * 2, yOrigin + object->position.y);
+		SetColor((int)object->objectColor, (int)object->objectBackgroundColor);
+		cout << object->objectIcon;
+	}
 }
 
 

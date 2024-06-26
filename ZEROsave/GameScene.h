@@ -11,6 +11,10 @@
 #include "UIRenderer.h"
 #include "ObjectManager.h"
 #include "console.h"
+#include "Enemy.h"
+
+using std::getline;
+using std::string;
 
 class UIRenderer;
 class Map;
@@ -32,18 +36,17 @@ private :
 	COORD _windowSize;
 
 public:
-
-
 	virtual bool Init() override;
 
-	void InitMapData();
+	void InitStageData();
 	void InitObjects();
 
 	virtual SceneState Update() override;
 
 	void MovePlayer();
+	void ControlPlayer();
 	void UpdateWindow();
-	void CheckGet1Item();
+	void CheckGetItem();
 
 	virtual void Render() override;
 

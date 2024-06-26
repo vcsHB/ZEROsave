@@ -3,7 +3,7 @@
 void FieldObject::Initialize() 
 {
 	_collider = new Collider(this, ColliderType::Object, ColliderType::Player);
-	HealthCompo->OnDieEvent.Add(Destroy);
+	HealthCompo->OnDieEvent.Add(this, &FieldObject::Destroy);
 
 }
 
