@@ -1,16 +1,16 @@
 #pragma once
 #include "Agent.h"
+#include "EnemyAI.h"
 
-class Player : public Agent
+class Enemy : public Agent
 {
-public :
-	float attackCooltime = 0;
+private :
+	class EnemyAI* _enemyAI;
+
+public:
 
 	void TakeDamage(int amount) override;
 
 	void Initialize() override;
-
-	void HandleEnemyCollision(Collider* hit);
-
 };
 

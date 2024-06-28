@@ -1,0 +1,8 @@
+{
+  "solution": {
+    "path": "ZEROsave.sln",
+    "projects": [
+      "ZEROsave\\ZEROsave.vcxproj"
+    ]
+  }
+}
