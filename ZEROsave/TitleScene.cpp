@@ -4,22 +4,46 @@
 #include <Windows.h>
 #include <fcntl.h>
 #include <io.h>
+#include <mmsystem.h>
+#include <sstream>  // 추가된 헤더
+#include <stdlib.h>
+#pragma comment(lib, "winmm.lib")
+
+void gotoxy(int x, int y) {
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
+void centerText(const std::string& text) {
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    int columns, rows;
+    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+    columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+    rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+    int x = (columns - text.length()) / 2;
+    int y = rows / 2;
+    gotoxy(x, y);
+}
 
 bool TitleScene::Init() {
     return true;
 }
 
-SceneState TitleScene::Update() {
+SceneState TitleScene::Update()
+{
+    //PlaySound("", 0, SND_FILENAME | SND_ASYNC | SND_LOOP); //루프 재생
     CONSOLE_CURSOR_INFO cursorInfo = { 0, };
     cursorInfo.dwSize = 1;
     cursorInfo.bVisible = FALSE;
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
 
-    std::cout << "Title Scene Updated" << std::endl;
     return { false, false, SceneTypeEnum::InGame };
 }
 
-void TitleScene::Render() {
+void TitleScene::Render()
+{
     GotoPos(0, 0);
     int beforemode = _setmode(_fileno(stdout), _O_U16TEXT);
     std::wcout << R"(
@@ -41,18 +65,18 @@ bool TitleScene::Title() {
     while (true) {
         system("cls");
         Render();
-        std::cout << "Rendering Menu" << std::endl;  // 디버깅 메시지 추가
         MenuRender();
-        std::cout << "Menu Rendered" << std::endl;  // 디버깅 메시지 추가
 
         // 잠시 대기하여 출력 확인
         Sleep(3000);
 
         MENU eMenu = MenuRender();
-        std::cout << "Menu Selected" << std::endl;  // 디버깅 메시지 추가
+
         switch (eMenu) {
         case MENU::START:
-            std::cout << "칙칙폭폭" << std::endl;
+            // Clear the console and print "Hi"
+            system("cls");
+            std::cout << "Hi" << std::endl;
             return true;
         case MENU::INFO:
             InfoRender();
@@ -65,7 +89,7 @@ bool TitleScene::Title() {
 
 void TitleScene::InfoRender() {
     system("cls");
-    std::cout << "[조작법 ]" << std::endl;
+    std::cout << "[조작법]" << std::endl;
     Sleep(100);
     while (true) {
         if (KeyController() == KEY::SPACE)
@@ -78,9 +102,6 @@ MENU TitleScene::MenuRender() {
     int x = Resolution.X / 3;
     int y = static_cast<int>(Resolution.Y / 2.5);
     int originy = y;
-
-    // 메뉴 렌더링 전 초기화
-    std::cout << "MenuRender: x = " << x << ", y = " << y << std::endl;  // 디버깅 메시지 추가
 
     if (!GotoPos(x, y)) {
         std::cerr << "GotoPos failed at (" << x << ", " << y << ")" << std::endl;
@@ -104,7 +125,7 @@ MENU TitleScene::MenuRender() {
 
     while (true) {
         KEY eKey = KeyController();
-        //std::cout << "Key Pressed: " << static_cast<int>(eKey) << std::endl;
+
         switch (eKey) {
         case KEY::UP:
             if (originy < y) {
@@ -134,11 +155,36 @@ MENU TitleScene::MenuRender() {
             break;
         case KEY::SPACE:
             if (y == originy)
-                return MENU::START;
+            {
+                system("cls");
+                for (int i = 0; i <= 100; i++) {
+                    system("cls");
+                    std::stringstream ss;
+                    ss << i << "% 로딩중. . .";
+                    std::string loadingMessage = ss.str();
+                    centerText(loadingMessage);
+                    std::cout << loadingMessage;
+                    Sleep(30);
+                }
+                system("cls");
+                std::string completeMessage = "100% 로딩완료";
+                centerText(completeMessage);
+                std::cout << completeMessage;
+            }
+
             else if (y == originy + 1)
-                return MENU::INFO;
+            {
+                system("cls");
+                std::cout << "제작: 심장훈, 김민성" << std::endl;
+                std::cout << "게임 이름 : ZeroSave" << std::endl;
+            }
+
             else if (y == originy + 2)
-                return MENU::QUIT;
+            {
+                system("cls");
+                std::cout << "안녕히가세요";
+                exit(1);
+            }
         }
     }
 }
