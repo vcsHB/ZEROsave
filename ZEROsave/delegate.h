@@ -6,9 +6,9 @@
 template<typename... Args>
 class Delegate {
 public:
-    using FunctionType = void(*)(Args...);
+    using FuncType = std::function<void(Args...)>;
 
-    void Add(FunctionType func) {
+    void Add(FuncType func) {
         functions.push_back(func);
     }
 
@@ -19,5 +19,5 @@ public:
     }
 
 private:
-    std::vector<FunctionType> functions;
+    std::vector<FuncType> functions;
 };

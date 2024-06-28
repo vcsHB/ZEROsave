@@ -3,10 +3,9 @@
 void EnemyAI::Initialize(Agent* owner) 
 {
 	_owner = owner;
+	_map = Map::GetInstance();
 	_collider = _owner->collider;
-	cout << "델리게이드 출발";
-	_collider->OnCollisionEvent.Add(this, &EnemyAI::MoveTurn);
-	cout << "델리게이드 ";
+	_collider->OnCollisionEvent.Add(std::bind(&EnemyAI::MoveTurn, this, std::placeholders::_1));
 }
 
 void EnemyAI::CheckCollision()
@@ -21,6 +20,10 @@ void EnemyAI::Move()
 {
 	CheckCollision();
 	_owner->position = _owner->newPosition;
+	MapTile tile = _map->GetTile(_owner->newPosition);
+	if ((int)tile.tileType != 1) {
+		return;
+	}
 }
 
 void EnemyAI::MoveTurn(Collider* hit)
@@ -30,8 +33,7 @@ void EnemyAI::MoveTurn(Collider* hit)
 	}
 }
 
-
-
-
-
-
+void EnemyAI::Update()
+{
+	Move();
+}

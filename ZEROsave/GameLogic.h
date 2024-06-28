@@ -1,13 +1,10 @@
 #pragma once
 #include "SceneDefine.h"
 
-
-
 class GameLogic {
 
 public:
 	SceneTypeEnum sceneType;
-
 
 	/**
 	 씬이 시작될때 실행되는 함수

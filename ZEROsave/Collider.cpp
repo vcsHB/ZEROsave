@@ -8,9 +8,7 @@ Collider::Collider(Object* owner, ColliderType type, ColliderType target)
 	_collisionTarget = target;
 	_owner = owner;
 
-	OnCollisionEvent = new Delegate();
-	OnHitEvent = new Delegate();
-
+	
 
 	_map = Map::GetInstance();
 
@@ -22,12 +20,12 @@ bool Collider::CheckCollision()
 	if (_objectManager->FindObject(_owner->newPosition) == nullptr) {
 		return false;
 	}
-	OnCollisionEvent->Invoke();
+	OnCollisionEvent.Invoke(this);
 
     return true;
 }
 
 void Collider::HandleHitEvent()
 {
-	OnHitEvent->Invoke();
+	OnHitEvent.Invoke(this);
 }

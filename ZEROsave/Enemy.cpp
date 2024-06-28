@@ -11,12 +11,18 @@ void Enemy::TakeDamage(int amount)
 void Enemy::Initialize()
 {
 	_enemyAI = new EnemyAI();
+	collider = new Collider(this, ColliderType::Enemy, ColliderType::Player);
+
 	_enemyAI->Initialize(this);
 	MovementCompo = new Movement(this);
 	Status = new Stat();
-	collider = new Collider(this, ColliderType::Enemy, ColliderType::Player);
 
 	objectIcon = "¡Ý";
 	objectColor = COLOR::RED;
 	objectBackgroundColor = COLOR::BLACK;
+}
+
+void Enemy::Update()
+{
+	_enemyAI->Update();
 }

@@ -21,6 +21,10 @@ void ObjectManager::GenerateObject(Object* object)
 
 void ObjectManager::Update()
 {
+	for (int i = 0; i < _objectList.size(); i++)
+	{
+		_objectList[i]->Update();
+	}
 }
 
 std::vector<Object*> ObjectManager::GetObjects()

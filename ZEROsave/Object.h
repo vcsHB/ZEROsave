@@ -37,6 +37,10 @@ typedef struct Position
 		return { x + b.x, y + b.y };
 	}
 
+	Position operator- (Position b) {
+		return { x - b.x, y - b.y };
+	}
+
 	bool operator== (Position b) {
 		return x == b.x && y == b.y;
 	}
@@ -58,6 +62,8 @@ public :
 	Position lastVelocity = { 1,0 };
 
 	virtual void Initialize() = 0;
+
+	virtual void Update() = 0;
 
 };
 

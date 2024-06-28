@@ -14,6 +14,6 @@ public:
 	
 	void TakeDamage(int amount) override;
 
-
+	void Update() override;
 };
 

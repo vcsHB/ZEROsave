@@ -19,9 +19,7 @@ bool GameScene::Init()
 	_player = new Player();
 
 	// ¸Ê ·Îµå
-	cout << "¸Ê ·Îµå";
 	InitStageData();
-	cout << "¸Ê ·Îµå ³¡";
 
 
 	_player->HealthCompo->Initialize(10);
@@ -122,6 +120,7 @@ SceneState GameScene::Update()
 {
 	MovePlayer();
 	UpdateWindow();
+	_objectManager->Update();
 	return { false, false, SceneTypeEnum::Title };
 }
 

@@ -12,5 +12,7 @@ public:
 	void TakeDamage(int amount) override;
 
 	void Initialize() override;
+
+	void Update() override;
 };
 

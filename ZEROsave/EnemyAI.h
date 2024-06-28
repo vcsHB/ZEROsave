@@ -1,14 +1,18 @@
 #pragma once
+#include <functional>
 #include "Agent.h"
+#include "Map.h"
 #include "Collider.h"
 
 class Agent;
+class Map;
 class Collider;
 
 class EnemyAI
 {
 private :
 	Agent* _owner;
+	Map* _map;
 	Collider* _collider;
 
 public :
@@ -19,6 +23,8 @@ public :
 
 	void Move();
 
-	void MoveTurn();
+	void MoveTurn(Collider* hit);
+
+	void Update();
 };
 

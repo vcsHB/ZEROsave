@@ -19,9 +19,13 @@ void Player::Initialize()
 	objectColor = COLOR::SKYBLUE;
 	objectBackgroundColor = COLOR::BLACK;
 
-	collider->OnHitEvent.Add(this, &Player::HandleEnemyCollision);
+	collider->OnHitEvent.Add(std::bind(&Player::HandleEnemyCollision, this, std::placeholders::_1));
 }
 
 void Player::HandleEnemyCollision(Collider* hit) {
 	TakeDamage(1);
+}
+
+void Player::Update()
+{
 }

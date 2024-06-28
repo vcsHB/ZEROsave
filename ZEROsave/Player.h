@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 #include "Agent.h"
 
 class Player : public Agent
@@ -12,5 +13,6 @@ public :
 
 	void HandleEnemyCollision(Collider* hit);
 
+	void Update() override;
 };
 
