@@ -10,5 +10,7 @@ public :
 
 	void Initialize() override;
 
+	void HandleEnemyCollision(Collider* hit);
+
 };
 

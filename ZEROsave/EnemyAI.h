@@ -18,5 +18,7 @@ public :
 	void CheckCollision();
 
 	void Move();
+
+	void MoveTurn();
 };
 

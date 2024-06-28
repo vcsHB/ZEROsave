@@ -5,7 +5,7 @@
 class Enemy : public Agent
 {
 private :
-	EnemyAI* _enemyAI;
+	class EnemyAI* _enemyAI;
 
 public:
 

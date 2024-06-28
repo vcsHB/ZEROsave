@@ -15,11 +15,32 @@ enum class ObjectType{
 class ObjectManager
 {
 private:
-	//std::vector<FieldObject*> _objectList;
+	static ObjectManager* _instance;
+
+	ObjectManager() {
+
+	}
+
 	std::vector<Object*> _objectList;
-	//std::vector<Agent*> _agentList;
 
 public:
+	static ObjectManager* GetInstance()
+	{
+		if (_instance == nullptr)
+			_instance = new ObjectManager();
+		return _instance;
+	}
+
+	static void DestroyInstance()
+	{
+		if (_instance != nullptr) {
+			delete _instance;
+			_instance = nullptr;
+			
+		}
+	}
+
+
 	void GenerateObject(Object* object);
 	
 	void Update();
@@ -27,5 +48,6 @@ public:
 
 	std::vector<Object*> GetObjects();
 
+	Object* FindObject(Position position);
 };
 

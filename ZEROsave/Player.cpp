@@ -18,4 +18,10 @@ void Player::Initialize()
 	objectIcon = "¢Ã";
 	objectColor = COLOR::SKYBLUE;
 	objectBackgroundColor = COLOR::BLACK;
+
+	collider->OnHitEvent.Add(this, &Player::HandleEnemyCollision);
+}
+
+void Player::HandleEnemyCollision(Collider* hit) {
+	TakeDamage(1);
 }

@@ -15,14 +15,17 @@ bool GameScene::Init()
 	_map = Map::GetInstance();
 	_windowManager = new WindowManager();
 	_uiRenderer = new UIRenderer();
-	_objectManager = new ObjectManager();
+	_objectManager = ObjectManager::GetInstance();
+	_player = new Player();
 
 	// 맵 로드
+	cout << "맵 로드";
 	InitStageData();
+	cout << "맵 로드 끝";
 
 
-	_player = new Player();
 	_player->HealthCompo->Initialize(10);
+	_objectManager->GenerateObject(_player);
 
 	_player->Initialize();
 	_player->position = _map->startPosition;
@@ -77,7 +80,9 @@ void GameScene::InitStageData()
 
 	// 오브젝트 가져오기
 	Enemy* testEnemy = new Enemy();
+
 	testEnemy->Initialize();
+
 	testEnemy->position = { 8, 10 };
 	_objectManager->GenerateObject(testEnemy);
 

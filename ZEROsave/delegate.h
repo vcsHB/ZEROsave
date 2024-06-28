@@ -1,30 +1,23 @@
 #pragma once 
 #include <vector>
 #include <functional>
+#include <iostream>
 
-
-template <typename... Args>
+template<typename... Args>
 class Delegate {
 public:
-    // 함수 포인터 추가 템플릿 메서드 (전역 함수 또는 람다)
-    template <typename Function>
-    void Add(Function func) {
-        invokers_.emplace_back(func);
+    using FunctionType = void(*)(Args...);
+
+    void Add(FunctionType func) {
+        functions.push_back(func);
     }
 
-    // 멤버 함수 포인터 추가 템플릿 메서드
-    template <typename Object, typename Function>
-    void Add(Object* obj, Function func) {
-        invokers_.emplace_back([=](Args... args) { (obj->*func)(args...); });
-    }
-
-    // 모든 등록된 함수 호출
-    void operator()(Args... args) const {
-        for (const auto& invoker : invokers_) {
-            invoker(args...);
+    void Invoke(Args... args) {
+        for (auto& func : functions) {
+            func(args...);
         }
     }
 
 private:
-    std::vector<std::function<void(Args...)>> invokers_;  // 다양한 인수를 받는 함수 객체를 저장
+    std::vector<FunctionType> functions;
 };

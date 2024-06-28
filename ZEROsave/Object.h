@@ -32,6 +32,14 @@ typedef struct Position
 		y += direction.y;
 
 	}
+
+	Position operator+ (Position b) {
+		return { x + b.x, y + b.y };
+	}
+
+	bool operator== (Position b) {
+		return x == b.x && y == b.y;
+	}
 }Position;
 
 
@@ -47,6 +55,7 @@ public :
 	Position position = {};
 	// 이동에 따른 위치 보정을 위한 변수
 	Position newPosition = {};
+	Position lastVelocity = { 1,0 };
 
 	virtual void Initialize() = 0;
 
