@@ -1,6 +1,6 @@
 #include "Collider.h"
 
-
+#include "Agent.h"
 
 Collider::Collider(Object* owner, ColliderType type, ColliderType target)
 {
@@ -17,11 +17,14 @@ Collider::Collider(Object* owner, ColliderType type, ColliderType target)
 
 bool Collider::CheckCollision()
 {
-	if (_objectManager->FindObject(_owner->newPosition) == nullptr) {
+	Object* object = _objectManager->FindObject(_owner->newPosition);
+	
+	if (object == nullptr) {
 		return false;
 	}
+	Agent* agent = (Agent*)object;
 	OnCollisionEvent.Invoke(this);
-
+	agent->collider->HandleHitEvent();
     return true;
 }
 

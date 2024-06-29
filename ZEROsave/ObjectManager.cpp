@@ -27,6 +27,19 @@ void ObjectManager::Update()
 	}
 }
 
+void ObjectManager::DeleteObject(Object* object)
+{
+	auto it = std::find(_objectList.begin(), _objectList.end(), object);
+
+	// 찾았으면
+	if (it != _objectList.end()) {
+		// 메모리 해제
+		delete* it;
+		// 벡터에서 포인터 제거
+		_objectList.erase(it);
+	}
+}
+
 std::vector<Object*> ObjectManager::GetObjects()
 {
 	return _objectList;

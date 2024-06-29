@@ -24,6 +24,7 @@ public :
 	void Move();
 
 	void MoveTurn(Collider* hit);
+	void MoveTurnForce();
 
 	void Update();
 };

@@ -51,5 +51,9 @@ public:
 	bool CheckCollision();
 
 	void HandleHitEvent();
+
+	~Collider() {
+		
+	}
 };
 

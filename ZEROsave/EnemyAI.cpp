@@ -18,12 +18,16 @@ void EnemyAI::CheckCollision()
 
 void EnemyAI::Move()
 {
+	_owner->newPosition = _owner->position;
+
 	CheckCollision();
-	_owner->position = _owner->newPosition;
 	MapTile tile = _map->GetTile(_owner->newPosition);
 	if ((int)tile.tileType != 1) {
+		MoveTurnForce();
 		return;
 	}
+	_owner->position = _owner->newPosition;
+	
 }
 
 void EnemyAI::MoveTurn(Collider* hit)
@@ -31,6 +35,22 @@ void EnemyAI::MoveTurn(Collider* hit)
 	if (hit->GetColliderType() == ColliderType::Player) {
 		hit->HandleHitEvent();
 	}
+}
+
+void EnemyAI::MoveTurnForce()
+{
+	Position direcion = _owner->lastVelocity;
+
+	if (direcion == Position{ 1, 0 }) {
+		_owner->lastVelocity = { 0,1 };
+	}else if (direcion == Position{ -1, 0 }) {
+		_owner->lastVelocity = { 0,-1 };
+	}else if (direcion == Position{ 0, 1 }) {
+		_owner->lastVelocity = { -1,0 };
+	}else if(direcion == Position{ 0, -1 }) {
+		_owner->lastVelocity = { 1,0 };
+	}
+	
 }
 
 void EnemyAI::Update()

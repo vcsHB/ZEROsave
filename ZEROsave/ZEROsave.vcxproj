@@ -149,6 +149,7 @@
     <ClInclude Include="mci.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectDefine.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Projectile.h" />

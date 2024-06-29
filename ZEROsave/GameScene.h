@@ -35,6 +35,8 @@ private :
 
 	COORD _windowSize;
 
+	bool isGameOver;
+
 public:
 	virtual bool Init() override;
 
@@ -57,6 +59,10 @@ public:
 	void RenderUI();
 	
 	virtual void Exit() override;
+
+	// Event Functions
+	
+	void HandlePlayerDie(bool value);
 
 };
 

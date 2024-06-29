@@ -5,7 +5,7 @@ class Health {
 private:
 	int _currentHP;
 public:
-	class Delegate<bool> OnDieEvent;
+	Delegate<bool> OnDieEvent;
 
 	int maxHP;
 

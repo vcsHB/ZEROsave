@@ -65,6 +65,13 @@ public :
 
 	virtual void Update() = 0;
 
+	~Object() {
+
+	}
+	bool operator== (Object* b) {
+		return (position == b->position) && objectIcon == b->objectIcon;
+	}
+
 };
 
 
