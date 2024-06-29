@@ -1,7 +1,6 @@
 #include "GameScene.h"
 #include "Movement.h"
 
-
 bool GameScene::Init()
 {
 	system("title ZERO Save | mode con cols=60 lines=30");
@@ -187,7 +186,7 @@ void GameScene::RenderPlayer() {
 
 void GameScene::RenderObjects()
 {
-	vector<Object*> _objectList = _objectManager->GetObjects();
+	std::vector<Object*> _objectList = _objectManager->GetObjects();
 	for (Object* object : _objectList)
 	{
 		GotoPos(xOrigin + object->position.x * 2, yOrigin + object->position.y);

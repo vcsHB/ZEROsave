@@ -4,6 +4,8 @@
 #include <Windows.h>
 #include <fcntl.h>
 #include <io.h>
+
+
 #include <mmsystem.h>
 #include <sstream>  // 추가된 헤더
 #include <stdlib.h>
@@ -39,7 +41,7 @@ SceneState TitleScene::Update()
     cursorInfo.bVisible = FALSE;
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
 
-    return { false, false, SceneTypeEnum::InGame };
+    return { false, _isExit, SceneTypeEnum::InGame };
 }
 
 void TitleScene::Render()
@@ -59,6 +61,10 @@ void TitleScene::Render()
     )" << std::endl;
     _setmode(_fileno(stdout), beforemode);
     MenuRender();
+}
+
+void TitleScene::Exit()
+{
 }
 
 bool TitleScene::Title() {
@@ -123,68 +129,67 @@ MENU TitleScene::MenuRender() {
     }
     std::cout << ">";
 
-    while (true) {
-        KEY eKey = KeyController();
+    KEY eKey = KeyController();
 
-        switch (eKey) {
-        case KEY::UP:
-            if (originy < y) {
-                if (!GotoPos(x - 2, y)) {
-                    std::cerr << "GotoPos failed at (" << x - 2 << ", " << y << ")" << std::endl;
-                }
-                std::cout << " ";
-                if (!GotoPos(x - 2, --y)) {
-                    std::cerr << "GotoPos failed at (" << x - 2 << ", " << y << ")" << std::endl;
-                }
-                std::cout << ">";
-                Sleep(100);
+    switch (eKey) {
+    case KEY::UP:
+        if (originy < y) {
+            if (!GotoPos(x - 2, y)) {
+                std::cerr << "GotoPos failed at (" << x - 2 << ", " << y << ")" << std::endl;
             }
-            break;
-        case KEY::DOWN:
-            if (originy + 2 > y) {
-                if (!GotoPos(x - 2, y)) {
-                    std::cerr << "GotoPos failed at (" << x - 2 << ", " << y << ")" << std::endl;
-                }
-                std::cout << " ";
-                if (!GotoPos(x - 2, ++y)) {
-                    std::cerr << "GotoPos failed at (" << x - 2 << ", " << y << ")" << std::endl;
-                }
-                std::cout << ">";
-                Sleep(100);
+            std::cout << " ";
+            if (!GotoPos(x - 2, --y)) {
+                std::cerr << "GotoPos failed at (" << x - 2 << ", " << y << ")" << std::endl;
             }
-            break;
-        case KEY::SPACE:
-            if (y == originy)
-            {
+            std::cout << ">";
+            Sleep(100);
+        }
+        break;
+    case KEY::DOWN:
+        if (originy + 2 > y) {
+            if (!GotoPos(x - 2, y)) {
+                std::cerr << "GotoPos failed at (" << x - 2 << ", " << y << ")" << std::endl;
+            }
+            std::cout << " ";
+            if (!GotoPos(x - 2, ++y)) {
+                std::cerr << "GotoPos failed at (" << x - 2 << ", " << y << ")" << std::endl;
+            }
+            std::cout << ">";
+            Sleep(100);
+        }
+        break;
+    case KEY::SPACE:
+        if (y == originy)
+        {
+            system("cls");
+            for (int i = 0; i <= 100; i++) {
                 system("cls");
-                for (int i = 0; i <= 100; i++) {
-                    system("cls");
-                    std::stringstream ss;
-                    ss << i << "% 로딩중. . .";
-                    std::string loadingMessage = ss.str();
-                    centerText(loadingMessage);
-                    std::cout << loadingMessage;
-                    Sleep(30);
-                }
-                system("cls");
-                std::string completeMessage = "100% 로딩완료";
-                centerText(completeMessage);
-                std::cout << completeMessage;
+                std::stringstream ss;
+                ss << i << "% 로딩중. . .";
+                std::string loadingMessage = ss.str();
+                centerText(loadingMessage);
+                std::cout << loadingMessage;
+                Sleep(10);
             }
+            system("cls");
+            std::string completeMessage = "100% 로딩완료";
+            centerText(completeMessage);
+            std::cout << completeMessage;
+            _isExit = true;
+        }
 
-            else if (y == originy + 1)
-            {
-                system("cls");
-                std::cout << "제작: 심장훈, 김민성" << std::endl;
-                std::cout << "게임 이름 : ZeroSave" << std::endl;
-            }
+        else if (y == originy + 1)
+        {
+            system("cls");
+            std::cout << "제작: 심장훈, 김민성" << std::endl;
+            std::cout << "게임 이름 : ZeroSave" << std::endl;
+        }
 
-            else if (y == originy + 2)
-            {
-                system("cls");
-                std::cout << "안녕히가세요";
-                exit(1);
-            }
+        else if (y == originy + 2)
+        {
+            system("cls");
+            std::cout << "안녕히가세요";
+            exit(1);
         }
     }
 }

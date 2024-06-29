@@ -17,11 +17,12 @@ class TitleScene : public GameLogic
 {
 private:
     bool isRendered = false;
-
+    bool _isExit = false;
 public:
     bool Init() override;
     SceneState Update() override;
     void Render() override;
+    void Exit() override;
 
     MENU MenuRender();
     KEY KeyController();
