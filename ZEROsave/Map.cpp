@@ -17,24 +17,27 @@ void Map::Initialize(int size, std::string* mapText)
 	
 	MapWidth = size;
 	MapHeight = size;
-	maptiles = new MapTile*[size];
+	mapTiles = new MapTile*[size];
 	for (int i = 0; i < MapHeight; i++)
 	{
-		maptiles[i] = new MapTile[size];
+		mapTiles[i] = new MapTile[size];
 		 //널문자 반영 해야되나?
 		for (int j = 0; j < MapWidth; j++)
 		{
-			maptiles[i][j] = MapTile(
+			mapTiles[i][j] = MapTile(
 				(TileTypeEnum)(mapText[i][j] - '0'),
 				{ i, j }
 			);
 		}
-	}
+	}   
 }
-
+ 
 MapTile Map::GetTile(int XPos, int YPos)
 {
-	MapTile tile = maptiles[YPos][XPos];
+ 	if (mapTiles == nullptr) return MapTile();
+	MapTile tile = mapTiles[YPos][XPos];
+	/*GotoPos(0, 20);
+	cout << XPos << ", " << YPos << "를 찾는다";*/
 	if (!tile.isColorSet) {
 
 		tile.isColorSet = true;
@@ -46,6 +49,7 @@ MapTile Map::GetTile(int XPos, int YPos)
 
 MapTile Map::GetTile(Position position)
 {	
+	
 	return GetTile(position.x, position.y);
 }
 

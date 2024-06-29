@@ -21,7 +21,7 @@ void UIRenderer::Render()
 	GotoPos(_windowManager->windowSizeX / 2 - 10, _windowManager->windowSizeY - 3);
 	int hp = _player->HealthCompo->GetCurrentHP();
 	int maxHp = _player->HealthCompo->maxHP;
-	_player->HealthCompo->TakeDamage(1);
+	//_player->HealthCompo->TakeDamage(1);
 
 	int fillAmount = (int)(((float)hp / maxHp) * 20);
 	wcout << "¢º";

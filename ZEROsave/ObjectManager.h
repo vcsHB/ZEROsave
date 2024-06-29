@@ -4,6 +4,7 @@
 #include "Object.h"
 #include "FieldObject.h"
 
+
 class FieldObject;
 class Agent;
 
@@ -44,6 +45,8 @@ public:
 	void GenerateObject(Object* object);
 	
 	void Update();
+
+	void DeleteObject(Object* object);
 
 
 	std::vector<Object*> GetObjects();

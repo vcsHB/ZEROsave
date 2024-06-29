@@ -19,6 +19,6 @@ void Health::RestoreHealth(int amount) {
 void Health::CheckDie()
 {
 	if (_currentHP <= 0) {
-		OnDieEvent->Invoke();
+		OnDieEvent.Invoke(true);
 	}
 }

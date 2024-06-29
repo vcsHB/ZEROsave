@@ -12,7 +12,6 @@
 #include "ObjectManager.h"
 #include "console.h"
 #include "Enemy.h"
-
 using std::getline;
 using std::string;
 
@@ -35,6 +34,8 @@ private :
 
 	COORD _windowSize;
 
+	bool _isGameOver = false;
+
 public:
 	virtual bool Init() override;
 
@@ -43,8 +44,6 @@ public:
 
 	virtual SceneState Update() override;
 
-	void MovePlayer();
-	void ControlPlayer();
 	void UpdateWindow();
 	void CheckGetItem();
 
@@ -57,6 +56,10 @@ public:
 	void RenderUI();
 	
 	virtual void Exit() override;
+
+	// Event Functions
+	
+	void HandlePlayerDie(bool value);
 
 };
 

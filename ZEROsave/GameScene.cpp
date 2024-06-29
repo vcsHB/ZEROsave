@@ -2,7 +2,6 @@
 #include "Movement.h"
 
 
-
 bool GameScene::Init()
 {
 	system("title ZERO Save | mode con cols=60 lines=30");
@@ -19,9 +18,7 @@ bool GameScene::Init()
 	_player = new Player();
 
 	// 맵 로드
-	cout << "맵 로드";
 	InitStageData();
-	cout << "맵 로드 끝";
 
 
 	_player->HealthCompo->Initialize(10);
@@ -30,6 +27,7 @@ bool GameScene::Init()
 	_player->Initialize();
 	_player->position = _map->startPosition;
 	_player->newPosition = _map->startPosition;
+	_player->HealthCompo->OnDieEvent.Add(std::bind(&GameScene::HandlePlayerDie, this, std::placeholders::_1));
 
 	_uiRenderer->Initialize(_player, _windowManager);
 	return true;
@@ -120,51 +118,17 @@ void GameScene::InitObjects()
 
 SceneState GameScene::Update() 
 {
-	MovePlayer();
+	if (_isGameOver) return { false, true, SceneTypeEnum::Title };
+
 	UpdateWindow();
+	_objectManager->Update();
+	Sleep(100);
+
 	return { false, false, SceneTypeEnum::Title };
 }
 
-void GameScene::MovePlayer()
-{
-	_player->newPosition = _player->position;
-	// 인풋 받아와서 이동코드 작성
-	if (GetAsyncKeyState(VK_UP) & 0x8000) {
-		
-		--_player->newPosition.y;
-	}
-	else if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-		++_player->newPosition.y;
-	}
-	else if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-		_player->newPosition.x--;
-		//_player->newPosition.x -= 2;
-	}
-	else if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-		//_player->newPosition.x += 2;
-		_player->newPosition.x++;
-	}
-	_player->newPosition.ClampX(0, _map->MapWidth-1);
-	_player->newPosition.ClampY(0, _map->MapHeight-1);
-	MapTile tile = _map->GetTile(_player->newPosition);
-	if ((int)tile.tileType != 1) {
-		return;
-	}
-
-	_player->MovementCompo->MoveTo(_player->newPosition);
-	Sleep(100);
-}
-
-void GameScene::ControlPlayer()
-{
-	if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
-		// 공격 구현 해야디
 
 
-	}
-
-
-}
 
 void GameScene::UpdateWindow()
 {
@@ -246,6 +210,11 @@ void GameScene::Exit()
 {
 	
 	delete[] _map;
+}
+
+void GameScene::HandlePlayerDie(bool value)
+{
+	_isGameOver = value;
 }
 
 

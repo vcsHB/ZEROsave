@@ -3,10 +3,9 @@
 void EnemyAI::Initialize(Agent* owner) 
 {
 	_owner = owner;
+	_map = Map::GetInstance();
 	_collider = _owner->collider;
-	cout << "델리게이드 출발";
-	_collider->OnCollisionEvent.Add(this, &EnemyAI::MoveTurn);
-	cout << "델리게이드 ";
+	_collider->OnCollisionEvent.Add(std::bind(&EnemyAI::MoveTurn, this, std::placeholders::_1));
 }
 
 void EnemyAI::CheckCollision()
@@ -19,8 +18,16 @@ void EnemyAI::CheckCollision()
 
 void EnemyAI::Move()
 {
+	_owner->newPosition = _owner->position;
+
 	CheckCollision();
+	MapTile tile = _map->GetTile(_owner->newPosition);
+	if ((int)tile.tileType != 1) {
+		MoveTurnForce();
+		return;
+	}
 	_owner->position = _owner->newPosition;
+	
 }
 
 void EnemyAI::MoveTurn(Collider* hit)
@@ -30,8 +37,27 @@ void EnemyAI::MoveTurn(Collider* hit)
 	}
 }
 
+void EnemyAI::MoveTurnForce()
+{
+	Position direcion = _owner->lastVelocity;
 
+	if (direcion == Position{ 1, 0 }) {
+		_owner->lastVelocity = { 0,1 };
+	}else if (direcion == Position{ -1, 0 }) {
+		_owner->lastVelocity = { 0,-1 };
+	}else if (direcion == Position{ 0, 1 }) {
+		_owner->lastVelocity = { -1,0 };
+	}else if(direcion == Position{ 0, -1 }) {
+		_owner->lastVelocity = { 1,0 };
+	}
+	
+}
 
-
-
-
+void EnemyAI::Update()
+{
+	_currentMovecooldown += 0.1f;
+	if (_currentMovecooldown >= _moveCooltime) {
+		Move();
+		_currentMovecooldown = 0;
+	}
+}
