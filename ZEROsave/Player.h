@@ -15,7 +15,7 @@ private:
 	float _attackCooldown = 0;
 
 public :
-	float attackCooltime = 1;
+	float attackCooltime = 1.0f;
 	Delegate<bool> OnPlayerDieEvent;
 
 	void TakeDamage(int amount) override;

@@ -84,8 +84,8 @@ void Player::AttackControl()
 		_attackCooldown = 0;
 		PlayerProjectile* projectile = new PlayerProjectile();
 		projectile->Initialize();
-		projectile->InitializeProjectile(position, lastVelocity, 1, 1, 5);
-		ObjectManager::GetInstance()->GenerateObject(projectile);
+		projectile->InitializeProjectile(position, lastVelocity, 1, 0.5f, 5);\
+		
 		/*GotoPos(0, 10);
 		cout << "플레이어 공격 함";*/
 	}

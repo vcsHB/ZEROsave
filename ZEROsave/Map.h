@@ -82,7 +82,7 @@ public:
 	Position startPosition = {};
 
 	// 맵 타일들을 관리함
-	MapTile** maptiles;
+	MapTile** mapTiles;
 
 	void Initialize(int size, std::string* mapText);
 

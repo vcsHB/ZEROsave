@@ -14,7 +14,9 @@ void Projectile::InitializeProjectile
 	_moveCooltime = moveCooltime;
 	_lifeTime = lifeTime;
 	isActive = true;
+	_objectManager->GenerateObject(this);
 }
+
 
 void Projectile::Update()
 {
@@ -30,7 +32,7 @@ bool Projectile::CheckCollision()
 {
 	
 	MapTile tile = _map->GetTile(newPosition);
-	GotoPos(0, 10);
+  	GotoPos(0, 10);
 	cout << newPosition.x << ", " << newPosition.y;
 	if ((int)tile.tileType != 1 ) {
 		//_collider->OnCollisionEvent.Invoke(_collider);

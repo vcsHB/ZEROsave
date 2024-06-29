@@ -15,7 +15,7 @@ private :
 	Map* _map;
 	Collider* _collider;
 	float _currentMovecooldown;
-	float _moveCooltime = 1;
+	float _moveCooltime = 0.5f;
 public :
 
 	void Initialize(Agent* owner);

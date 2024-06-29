@@ -65,7 +65,7 @@ public :
 
 	Position position = {};
 	// 이동에 따른 위치 보정을 위한 변수
-	Position newPosition = {};
+	Position newPosition = {0, 0};
 	Position lastVelocity = { 1,0 };
 
 	virtual void Initialize() = 0;
