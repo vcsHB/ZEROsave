@@ -1,11 +1,9 @@
 #pragma once
 #include "Agent.h"
 
-class Player : public Agent
+class Enemy : public Agent
 {
-	
-public :
-	
+
 
 	void TakeDamage(int amount) override;
 

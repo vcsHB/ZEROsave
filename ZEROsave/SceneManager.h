@@ -20,8 +20,7 @@ public :
 
 	void Start();
 
-
-
+	void FrameSync(unsigned int _Framerate);
 
 	~SceneManager() {
 		delete titleScene;

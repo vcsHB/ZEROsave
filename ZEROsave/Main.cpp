@@ -1,20 +1,12 @@
 #include "Define.h"
 
-class a
-{
 
-};
-class test
-{
-	a m_a;
-};
 int main()
 {
-	test t;
 
 	SceneManager *sceneManager = new SceneManager();
 	sceneManager->Initialize();
 	sceneManager->Start();
-
+	cout << "Á¾·á";
 	delete &sceneManager;
 }

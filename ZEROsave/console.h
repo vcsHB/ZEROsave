@@ -1,9 +1,10 @@
 #pragma once
-//#include <iostream>
-//#include <Windows.h>
-//using std::cout;R
-//using std::wcout;
-//using std::endl;
+#include <iostream>
+#include <Windows.h>
+
+using std::cout;
+using std::wcout;
+using std::endl;
 
 void FullScreen();
 BOOL GotoPos(int _x, int _y);
@@ -14,6 +15,7 @@ int GetColor();
 void LockResize();
 COORD GetConsoleResolution();
 void SetFontsize(UINT _weight, UINT _sizeX, UINT _sizeY);
+void SetConsolePos(COORD pos);
 
 enum class COLOR
 {
