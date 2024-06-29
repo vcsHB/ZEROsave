@@ -4,10 +4,8 @@
 #include <Windows.h>
 #include <fcntl.h>
 #include <io.h>
-
-
 #include <mmsystem.h>
-#include <sstream>  // 추가된 헤더
+#include <sstream>
 #include <stdlib.h>
 #pragma comment(lib, "winmm.lib")
 
@@ -71,10 +69,6 @@ bool TitleScene::Title() {
     while (true) {
         system("cls");
         Render();
-        MenuRender();
-
-        // 잠시 대기하여 출력 확인
-        Sleep(3000);
 
         MENU eMenu = MenuRender();
 
@@ -95,10 +89,13 @@ bool TitleScene::Title() {
 
 void TitleScene::InfoRender() {
     system("cls");
-    std::cout << "[조작법]" << std::endl;
-    Sleep(100);
+    std::cout << "제작: 심장훈, 김민성" << std::endl;
+    std::cout << "게임 이름 : ZeroSave" << std::endl;
+    std::cout << "게임 정보를 확인하려면 X를 누르세요." << std::endl;
+
+    // 'X' 키 입력을 기다림
     while (true) {
-        if (KeyController() == KEY::SPACE)
+        if (KeyController() == KEY::X)
             break;
     }
 }
@@ -129,67 +126,69 @@ MENU TitleScene::MenuRender() {
     }
     std::cout << ">";
 
-    KEY eKey = KeyController();
+    while (true) {
+        KEY eKey = KeyController();
 
-    switch (eKey) {
-    case KEY::UP:
-        if (originy < y) {
-            if (!GotoPos(x - 2, y)) {
-                std::cerr << "GotoPos failed at (" << x - 2 << ", " << y << ")" << std::endl;
+        switch (eKey) {
+        case KEY::UP:
+            if (originy < y) {
+                if (!GotoPos(x - 2, y)) {
+                    std::cerr << "GotoPos failed at (" << x - 2 << ", " << y << ")" << std::endl;
+                }
+                std::cout << " ";
+                if (!GotoPos(x - 2, --y)) {
+                    std::cerr << "GotoPos failed at (" << x - 2 << ", " << y << ")" << std::endl;
+                }
+                std::cout << ">";
+                Sleep(100);
             }
-            std::cout << " ";
-            if (!GotoPos(x - 2, --y)) {
-                std::cerr << "GotoPos failed at (" << x - 2 << ", " << y << ")" << std::endl;
+            break;
+        case KEY::DOWN:
+            if (originy + 2 > y) {
+                if (!GotoPos(x - 2, y)) {
+                    std::cerr << "GotoPos failed at (" << x - 2 << ", " << y << ")" << std::endl;
+                }
+                std::cout << " ";
+                if (!GotoPos(x - 2, ++y)) {
+                    std::cerr << "GotoPos failed at (" << x - 2 << ", " << y << ")" << std::endl;
+                }
+                std::cout << ">";
+                Sleep(100);
             }
-            std::cout << ">";
-            Sleep(100);
-        }
-        break;
-    case KEY::DOWN:
-        if (originy + 2 > y) {
-            if (!GotoPos(x - 2, y)) {
-                std::cerr << "GotoPos failed at (" << x - 2 << ", " << y << ")" << std::endl;
-            }
-            std::cout << " ";
-            if (!GotoPos(x - 2, ++y)) {
-                std::cerr << "GotoPos failed at (" << x - 2 << ", " << y << ")" << std::endl;
-            }
-            std::cout << ">";
-            Sleep(100);
-        }
-        break;
-    case KEY::SPACE:
-        if (y == originy)
-        {
-            system("cls");
-            for (int i = 0; i <= 100; i++) {
+            break;
+        case KEY::SPACE:
+            if (y == originy)
+            {
                 system("cls");
-                std::stringstream ss;
-                ss << i << "% 로딩중. . .";
-                std::string loadingMessage = ss.str();
-                centerText(loadingMessage);
-                std::cout << loadingMessage;
-                Sleep(10);
+                for (int i = 0; i <= 100; i++) {
+                    system("cls");
+                    std::stringstream ss;
+                    ss << i << "% 로딩중. . .";
+                    std::string loadingMessage = ss.str();
+                    centerText(loadingMessage);
+                    std::cout << loadingMessage;
+                    Sleep(10);
+                }
+                system("cls");
+                std::string completeMessage = "100% 로딩완료";
+                centerText(completeMessage);
+                std::cout << completeMessage;
+                _isExit = true;
             }
-            system("cls");
-            std::string completeMessage = "100% 로딩완료";
-            centerText(completeMessage);
-            std::cout << completeMessage;
-            _isExit = true;
-        }
 
-        else if (y == originy + 1)
-        {
-            system("cls");
-            std::cout << "제작: 심장훈, 김민성" << std::endl;
-            std::cout << "게임 이름 : ZeroSave" << std::endl;
-        }
+            else if (y == originy + 1)
+            {
+                InfoRender();
+                // 게임 정보 확인 후 메인 화면으로 돌아감
+                return MENU::NONE;
+            }
 
-        else if (y == originy + 2)
-        {
-            system("cls");
-            std::cout << "안녕히가세요";
-            exit(1);
+            else if (y == originy + 2)
+            {
+                system("cls");
+                std::cout << "안녕히가세요";
+                exit(1);
+            }
         }
     }
 }
@@ -204,6 +203,10 @@ KEY TitleScene::KeyController() {
     if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
         Sleep(50);
         return KEY::SPACE;
+    }
+    if (GetAsyncKeyState(0x58) & 0x8000) { // 'X' 키
+        Sleep(50);
+        return KEY::X;
     }
     return KEY::FALE;
 }

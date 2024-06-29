@@ -6,11 +6,11 @@
 #include <corecrt_io.h>
 
 enum class MENU {
-    START, INFO, QUIT
+    START, INFO, QUIT,NONE
 };
 
 enum class KEY {
-    UP, DOWN, SPACE, FALE
+    UP, DOWN, SPACE, FALE, X
 };
 
 class TitleScene : public GameLogic
