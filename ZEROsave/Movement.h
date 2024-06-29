@@ -1,16 +1,15 @@
 #pragma once
 #include "Object.h"
-#include "Agent.h"
 
 class Movement
 {
 private:
-	class Agent* _owner;
+	class Object* _owner;
 
 public:
 
-	Movement(Agent* agent) {
-		_owner = agent;
+	Movement(Object* object) {
+		_owner = object;
 	}
 
 	void MoveTo(Position targetPos);

@@ -123,6 +123,15 @@
     <ClInclude Include="delegate.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Health.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectDefine.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameLogic.cpp">
@@ -170,9 +179,6 @@
     <ClCompile Include="TargetObject.cpp">
       <Filter>소스 파일\Scene\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Projectile.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="delegate.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -211,6 +217,15 @@
     </ClCompile>
     <ClCompile Include="Movement.cpp">
       <Filter>소스 파일\Scene\Agent</Filter>
+    </ClCompile>
+    <ClCompile Include="Health.cpp">
+      <Filter>소스 파일\Scene\Agent</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>소스 파일\Scene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemManager.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

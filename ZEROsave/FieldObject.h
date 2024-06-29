@@ -1,16 +1,19 @@
 #pragma once
 #include "Object.h"
-#include "Collider.h"
-class FieldObject : public Object
+#include "DamageableObject.h"
+
+class FieldObject : public DamageableObject
 {
-private :
-	Collider* _collider;
+protected :
+	class Collider* _collider;
 	
 public:
 	void Initialize();
 
-	void Destroy();
+	virtual void Destroy(bool value) = 0;
 	
+	void TakeDamage(int amount) override;
 
+	void Update() override;
 };
 

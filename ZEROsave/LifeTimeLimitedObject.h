@@ -10,7 +10,7 @@ public :
 
 	const void Initialize(float lifeTime);
 
-	void virtual Update();
+	void Update() override;
 
 	void virtual Destroy() = 0;
 

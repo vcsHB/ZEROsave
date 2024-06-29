@@ -141,12 +141,15 @@
     <ClInclude Include="GameLogic.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="HealItemObject.h" />
+    <ClInclude Include="Health.h" />
+    <ClInclude Include="ItemManager.h" />
     <ClInclude Include="ItemObject.h" />
     <ClInclude Include="LifeTimeLimitedObject.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="mci.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectDefine.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Projectile.h" />
@@ -171,6 +174,8 @@
     <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="HealItemObject.cpp" />
+    <ClCompile Include="Health.cpp" />
+    <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="ItemObject.cpp" />
     <ClCompile Include="LifeTimeLimitedObject.cpp" />
     <ClCompile Include="Main.cpp" />

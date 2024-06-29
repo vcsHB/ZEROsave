@@ -1,5 +1,7 @@
 #pragma once
-class ItemObject
+#include "FieldObject.h"
+
+class ItemObject : public FieldObject
 {
 };
 

@@ -1,4 +1,5 @@
 #include "GameScene.h"
+#include "Movement.h"
 
 
 bool GameScene::Init()
@@ -13,30 +14,29 @@ bool GameScene::Init()
 	_map = Map::GetInstance();
 	_windowManager = new WindowManager();
 	_uiRenderer = new UIRenderer();
-	// 맵 로드
-	
-	InitMapData();
-
+	_objectManager = ObjectManager::GetInstance();
 	_player = new Player();
+
+	// 맵 로드
+	InitStageData();
+
+
 	_player->HealthCompo->Initialize(10);
+	_objectManager->GenerateObject(_player);
 
 	_player->Initialize();
 	_player->position = _map->startPosition;
 	_player->newPosition = _map->startPosition;
+	_player->HealthCompo->OnDieEvent.Add(std::bind(&GameScene::HandlePlayerDie, this, std::placeholders::_1));
 
 	_uiRenderer->Initialize(_player, _windowManager);
 	return true;
-
 }
 
 
-void GameScene::InitObjects()
-{
 
 
-}
-
-void GameScene::InitMapData()
+void GameScene::InitStageData()
 {
 	if (_map != nullptr)
 		delete _map;
@@ -48,7 +48,7 @@ void GameScene::InitMapData()
 	// 맵 생성 ======
 	_map = Map::GetInstance();
 	std::string bufferStr;
-	std::getline(readMap, bufferStr);
+	getline(readMap, bufferStr);
 	int size = stoi(bufferStr); // 사이즈 지정
 	_map->MapHeight = size;
 	_map->MapWidth = size;
@@ -56,28 +56,52 @@ void GameScene::InitMapData()
 	// 시작 위치 =======
 
 	int positionBufferX;
-	std::getline(readMap, bufferStr);
-	positionBufferX = stoi(bufferStr);
-
 	int positionBufferY;
-	std::getline(readMap, bufferStr);
+	getline(readMap, bufferStr);
+	positionBufferX = stoi(bufferStr);
+	getline(readMap, bufferStr);
 	positionBufferY = stoi(bufferStr);
 	_map->startPosition = { positionBufferX, positionBufferY };
+
 	//cout << positionBufferX << ", " << positionBufferY << endl;
 
 	// 맵 정의 =========
 	std::string* mapString = new std::string[size];
 	for (int i = 0; i < size; i++)
 	{
-		
 		std::getline(readMap, bufferStr);
 		if (readMap.fail()) {
 			std::cout << "파일 에러";
 		}
 		mapString[i] = bufferStr;
-		
-
 	}
+
+	// 오브젝트 가져오기
+	Enemy* testEnemy = new Enemy();
+
+	testEnemy->Initialize();
+
+	testEnemy->position = { 8, 10 };
+	_objectManager->GenerateObject(testEnemy);
+
+	//int _objectAmount;
+	//std::getline(readMap, bufferStr);
+	//_objectAmount = stoi(bufferStr);
+	//// 
+	//for (int i = 0; i < _objectAmount; i++)
+	//{
+	//	std::getline(readMap, bufferStr);
+	//	
+	//	std::getline(readMap, bufferStr);
+	//	positionBufferX = stoi(bufferStr);
+	//	std::getline(readMap, bufferStr);
+	//	positionBufferY = stoi(bufferStr);
+	//	Position pos = { positionBufferX, positionBufferY };
+	//	
+
+	//	
+	//}
+
 	readMap.close();
 	_map->Initialize(size, mapString);
 
@@ -86,47 +110,37 @@ void GameScene::InitMapData()
 
 }
 
+void GameScene::InitObjects()
+{
+	
+
+}
+
 SceneState GameScene::Update() 
 {
-	MovePlayer();
+	if (_isGameOver) return { false, true, SceneTypeEnum::Title };
+
 	UpdateWindow();
+	_objectManager->Update();
+	Sleep(100);
+
 	return { false, false, SceneTypeEnum::Title };
 }
 
-void GameScene::MovePlayer()
-{
-	_player->newPosition = _player->position;
-	// 인풋 받아와서 이동코드 작성
-	if (GetAsyncKeyState(VK_UP) & 0x8000) {
-		
-		--_player->newPosition.y;
-	}
-	else if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-		++_player->newPosition.y;
-	}
-	else if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-		_player->newPosition.x--;
-		//_player->newPosition.x -= 2;
-	}
-	else if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-		//_player->newPosition.x += 2;
-		_player->newPosition.x++;
-	}
-	_player->newPosition.ClampX(0, _map->MapWidth-1);
-	_player->newPosition.ClampY(0, _map->MapHeight-1);
-	MapTile tile = _map->GetTile(_player->newPosition);
-	if ((int)tile.tileType != 1) {
-		return;
-	}
 
-	_player->MovementCompo->MoveTo(_player->newPosition);
-	Sleep(100);
-}
+
 
 void GameScene::UpdateWindow()
 {
 	_windowManager->UpdateWindow();
 	
+}
+
+void GameScene::CheckGetItem()
+{
+	
+
+
 }
 
 
@@ -140,6 +154,7 @@ void GameScene::Render() {
 	//cout << xOrigin << ", " << yOrigin;
 	RenderMap();
 	RenderPlayer();
+	RenderObjects();
 	RenderUI();
 
 }
@@ -172,6 +187,13 @@ void GameScene::RenderPlayer() {
 
 void GameScene::RenderObjects()
 {
+	vector<Object*> _objectList = _objectManager->GetObjects();
+	for (Object* object : _objectList)
+	{
+		GotoPos(xOrigin + object->position.x * 2, yOrigin + object->position.y);
+		SetColor((int)object->objectColor, (int)object->objectBackgroundColor);
+		cout << object->objectIcon;
+	}
 }
 
 
@@ -188,6 +210,11 @@ void GameScene::Exit()
 {
 	
 	delete[] _map;
+}
+
+void GameScene::HandlePlayerDie(bool value)
+{
+	_isGameOver = value;
 }
 
 

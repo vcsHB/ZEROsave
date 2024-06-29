@@ -1,10 +1,13 @@
 #pragma once
 #include "Object.h"
+#include "Health.h"
 
-class DamageableObject : public Object {
+class Health;
 
+class DamageableObject : public Object 
+{
 public:
-	Health* HealthCompo;
+	Health* HealthCompo = nullptr;
 
 	DamageableObject() {
 		HealthCompo = new Health();

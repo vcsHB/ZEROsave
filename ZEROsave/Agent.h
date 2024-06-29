@@ -1,23 +1,25 @@
 #pragma once
-#include "Stat.h"
-#include "Object.h"
 #include "DamageableObject.h"
-#include "Movement.h"
-#include "Collider.h"
+class Movement;
+class Stat;
+class Collider;
 
-class Agent : public DamageableObject {
-
+class Agent : public DamageableObject 
+{
 public:
-	class Movement* MovementCompo;
-	class Stat* Status;
-	class Collider* collider;
+	Movement* MovementCompo = nullptr;
+	Stat* Status = nullptr;
+	Collider* collider = nullptr;
 
-	
+	Agent() {
+		
+	}
 
-	/*virtual void Initialize() {
+	~Agent() {
+		delete MovementCompo;
+		delete Status;
+		delete collider;
 
-	}*/
-
+	}
 
 };
-

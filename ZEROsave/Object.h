@@ -32,40 +32,52 @@ typedef struct Position
 		y += direction.y;
 
 	}
-};
 
-class Health {
-private :
-	int _currentHP;
-public:
+	Position operator+ (Position b) {
+		return { x + b.x, y + b.y };
+	}
+
+	void operator+= (Position b) {
+		x += b.x;
+		y += b.y;
+	}
+
+	Position operator- (Position b) {
+		return { x - b.x, y - b.y };
+	}
+
+	bool operator== (Position b) {
+		return x == b.x && y == b.y;
+	}
+
 	
-	int maxHP;
+}Position;
 
-	void Initialize(int amount);
-
-	void TakeDamage(int amount);
-
-	void RestoreHealth(int amount);
-
-	int GetCurrentHP() { return _currentHP; }
-
-
-};
 
 
 
 class Object
 {
 public :
-	std::string objectIcon;
-	COLOR objectColor;
-	COLOR objectBackgroundColor;
+	std::string objectIcon = "  ";
+	COLOR objectColor = COLOR::WHITE;
+	COLOR objectBackgroundColor = COLOR::BLACK;
 
-	Position position;
+	Position position = {};
 	// 이동에 따른 위치 보정을 위한 변수
-	Position newPosition;
+	Position newPosition = {0, 0};
+	Position lastVelocity = { 1,0 };
 
 	virtual void Initialize() = 0;
+
+	virtual void Update() = 0;
+
+	~Object() {
+
+	}
+	bool operator== (Object* b) {
+		return (position == b->position) && objectIcon == b->objectIcon;
+	}
 
 };
 
