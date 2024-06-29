@@ -2,7 +2,6 @@
 #include "Movement.h"
 
 
-
 bool GameScene::Init()
 {
 	system("title ZERO Save | mode con cols=60 lines=30");
@@ -28,6 +27,7 @@ bool GameScene::Init()
 	_player->Initialize();
 	_player->position = _map->startPosition;
 	_player->newPosition = _map->startPosition;
+	_player->HealthCompo->OnDieEvent.Add(std::bind(&GameScene::HandlePlayerDie, this, std::placeholders::_1));
 
 	_uiRenderer->Initialize(_player, _windowManager);
 	return true;
@@ -128,7 +128,8 @@ SceneState GameScene::Update()
 
 void GameScene::MovePlayer()
 {
-	
+	if (_isGameOver) return;
+
 	_player->newPosition = _player->position;
 	// 인풋 받아와서 이동코드 작성
 	if (GetAsyncKeyState(VK_UP) & 0x8000) 
@@ -248,6 +249,11 @@ void GameScene::Exit()
 {
 	
 	delete[] _map;
+}
+
+void GameScene::HandlePlayerDie(bool value)
+{
+	_isGameOver = value;
 }
 
 

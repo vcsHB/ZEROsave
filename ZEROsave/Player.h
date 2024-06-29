@@ -5,6 +5,8 @@
 
 class Player : public Agent
 {
+
+	
 public :
 	float attackCooltime = 0;
 	Delegate<bool> OnPlayerDieEvent;

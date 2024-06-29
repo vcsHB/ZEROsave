@@ -12,7 +12,6 @@
 #include "ObjectManager.h"
 #include "console.h"
 #include "Enemy.h"
-
 using std::getline;
 using std::string;
 
@@ -35,7 +34,7 @@ private :
 
 	COORD _windowSize;
 
-	bool isGameOver;
+	bool _isGameOver = false;
 
 public:
 	virtual bool Init() override;

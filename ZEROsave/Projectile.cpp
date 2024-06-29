@@ -20,3 +20,7 @@ void Projectile::Update()
 	
 
 }
+
+void Projectile::CheckCollision()
+{
+}
