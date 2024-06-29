@@ -37,6 +37,11 @@ typedef struct Position
 		return { x + b.x, y + b.y };
 	}
 
+	void operator+= (Position b) {
+		x += b.x;
+		y += b.y;
+	}
+
 	Position operator- (Position b) {
 		return { x - b.x, y - b.y };
 	}
@@ -44,6 +49,8 @@ typedef struct Position
 	bool operator== (Position b) {
 		return x == b.x && y == b.y;
 	}
+
+	
 }Position;
 
 

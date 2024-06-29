@@ -55,5 +55,9 @@ void EnemyAI::MoveTurnForce()
 
 void EnemyAI::Update()
 {
-	Move();
+	_currentMovecooldown += 0.1f;
+	if (_currentMovecooldown >= _moveCooltime) {
+		Move();
+		_currentMovecooldown = 0;
+	}
 }

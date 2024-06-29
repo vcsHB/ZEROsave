@@ -33,10 +33,11 @@ void ObjectManager::DeleteObject(Object* object)
 
 	// 찾았으면
 	if (it != _objectList.end()) {
-		// 메모리 해제
-		delete* it;
 		// 벡터에서 포인터 제거
 		_objectList.erase(it);
+		/*GotoPos(0, 12);
+		cout << "삭제 로직 다돌았다";*/
+
 	}
 }
 

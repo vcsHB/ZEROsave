@@ -30,7 +30,7 @@ private :
 
 public:
 	// 일반적인 충돌 이벤트
-	Delegate<Collider*> OnCollisionEvent;
+	Delegate<Collider*> OnCollisionEvent = Delegate<Collider*>({});
 	// 피격과같은 이벤트를 처리하는 이벤트
 	Delegate<Collider*> OnHitEvent;
 

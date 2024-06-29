@@ -44,8 +44,6 @@ public:
 
 	virtual SceneState Update() override;
 
-	void MovePlayer();
-	void ControlPlayer();
 	void UpdateWindow();
 	void CheckGetItem();
 

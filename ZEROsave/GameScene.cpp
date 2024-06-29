@@ -118,7 +118,8 @@ void GameScene::InitObjects()
 
 SceneState GameScene::Update() 
 {
-	MovePlayer();
+	if (_isGameOver) return { false, true, SceneTypeEnum::Title };
+
 	UpdateWindow();
 	_objectManager->Update();
 	Sleep(100);
@@ -126,48 +127,8 @@ SceneState GameScene::Update()
 	return { false, false, SceneTypeEnum::Title };
 }
 
-void GameScene::MovePlayer()
-{
-	if (_isGameOver) return;
-
-	_player->newPosition = _player->position;
-	// 인풋 받아와서 이동코드 작성
-	if (GetAsyncKeyState(VK_UP) & 0x8000) 
-	{
-		--_player->newPosition.y;
-	}
-	else if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-		++_player->newPosition.y;
-	}
-	else if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-		_player->newPosition.x--;
-	}
-	else if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-		_player->newPosition.x++;
-	}
-	// 이동 감지가 없으면 리턴
-	if (_player->position == _player->newPosition) return;
-
-	_player->newPosition.ClampX(0, _map->MapWidth-1);
-	_player->newPosition.ClampY(0, _map->MapHeight-1);
-	MapTile tile = _map->GetTile(_player->newPosition);
-	if ((int)tile.tileType != 1) {
-		return;
-	}
-
-	_player->MovementCompo->MoveTo(_player->newPosition);
-}
-
-void GameScene::ControlPlayer()
-{
-	if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
-		// 공격 구현 해야디
 
 
-	}
-
-
-}
 
 void GameScene::UpdateWindow()
 {

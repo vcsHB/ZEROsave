@@ -5,6 +5,7 @@
 #include "ObjectManager.h"
 #include "Collider.h"
 
+class Map;
 class Collider;
 
 class Projectile : public LifeTimeLimitedObject
@@ -12,6 +13,7 @@ class Projectile : public LifeTimeLimitedObject
 protected :
 	Map* _map;
 	Collider* _collider;
+	ObjectManager* _objectManager;
 protected:
 	Position _direction; // 벡터와 같은 역할을 한다
 	int _damage;
@@ -19,33 +21,38 @@ protected:
 public:
 	bool isActive;
 
-	Projectile() {
-		_collider = new Collider()
+
+	void InitializeProjectile(Position position, Position direction, int damage, int _moveCooltime, float lifeTime);
+
+	void Update() override;
+
+	bool CheckCollision();
+
+	void Move();
+
+	void Destroy() override;
+
+	~Projectile() {
+		delete _collider;
 	}
-
-	void Initialize(Position position, Position direction, int damage, int _moveCooltime, float lifeTime);
-
-	virtual void Update() override;
-
-	void CheckCollision();
-
-	const void Move() {
-		position.VectorAdd(_direction);
-	}
-
-	virtual void Destroy() override;
 
 };
 
 class PlayerProjectile : public Projectile 
 {
-	
+public:
+	PlayerProjectile() {
+	}
+	void Initialize() override;
+
 
 };
 
 class EnemyProjectile : public Projectile
 {
+public:
 
+	void Initialize() override;
 
 };
 

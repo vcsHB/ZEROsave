@@ -23,9 +23,12 @@ bool Collider::CheckCollision()
 		return false;
 	}
 	Agent* agent = (Agent*)object;
-	OnCollisionEvent.Invoke(this);
-	agent->collider->HandleHitEvent();
-    return true;
+	if (agent->collider->_colliderType == _collisionTarget) {
+		OnCollisionEvent.Invoke(this);
+		agent->collider->HandleHitEvent();
+		return true;
+	}
+	return false;
 }
 
 void Collider::HandleHitEvent()

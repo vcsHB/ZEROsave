@@ -14,7 +14,7 @@ void LifeTimeLimitedObject::Update()
     if (_currentTime >= _lifeTime) {
         // 생존 시간이 모두 지남
         isDestroyed = true;
-
+        Destroy();
     }
 
     return;
