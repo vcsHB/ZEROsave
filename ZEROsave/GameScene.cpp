@@ -1,12 +1,11 @@
 #include "GameScene.h"
 #include "Movement.h"
 
-
 bool GameScene::Init()
 {
 	system("title ZERO Save | mode con cols=60 lines=30");
 	system("cls");	
-	//
+	
 	SetCursorVisual(false, 1);
 	LockResize();  
 	SetFontsize(FW_BOLD, 20, 20);
@@ -41,7 +40,7 @@ void GameScene::InitStageData()
 	if (_map != nullptr)
 		delete _map;
 
-	std::fstream readMap("StageFiles/stage.txt");
+	std::fstream readMap("StageFiles\\stage.txt");
 
 	if (!readMap.is_open())
 		return;
@@ -187,7 +186,7 @@ void GameScene::RenderPlayer() {
 
 void GameScene::RenderObjects()
 {
-	vector<Object*> _objectList = _objectManager->GetObjects();
+	std::vector<Object*> _objectList = _objectManager->GetObjects();
 	for (Object* object : _objectList)
 	{
 		GotoPos(xOrigin + object->position.x * 2, yOrigin + object->position.y);

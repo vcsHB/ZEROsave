@@ -1,24 +1,32 @@
 #pragma once
-#include "Define.h"
-#include "GameLogic.h" 
+#include "GameLogic.h"
+#include <Windows.h>
 #include <iostream>
+#include <fcntl.h>
+#include <corecrt_io.h>
 
-using namespace std;
+enum class MENU {
+    START, INFO, QUIT,NONE
+};
+
+enum class KEY {
+    UP, DOWN, SPACE, FALE, X
+};
 
 class TitleScene : public GameLogic
 {
 private:
-    bool isRendered = false; // 플래그 변수 추가
-
+    bool isRendered = false;
+    bool _isExit = false;
 public:
-    bool Init() override ;
+    bool Init() override;
+    SceneState Update() override;
+    void Render() override;
+    void Exit() override;
 
-    virtual SceneState Update() override {
-        cout << "Title Scene Updated" << endl;
-        return { false, true, SceneTypeEnum::InGame };
-    }
-
-    virtual void Render() override;
-
-    virtual void Exit() override;
+    MENU MenuRender();
+    KEY KeyController();
+    bool Title();
+    void InfoRender();
+    
 };

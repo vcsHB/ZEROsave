@@ -12,6 +12,8 @@
 #include "ObjectManager.h"
 #include "console.h"
 #include "Enemy.h"
+
+#include <vector>
 using std::getline;
 using std::string;
 
@@ -22,6 +24,7 @@ class ObjectManager;
 class GameScene : public GameLogic
 {
 private :
+
 	WindowManager* _windowManager = nullptr;
 	UIRenderer* _uiRenderer = nullptr;
 	ObjectManager* _objectManager = nullptr;
